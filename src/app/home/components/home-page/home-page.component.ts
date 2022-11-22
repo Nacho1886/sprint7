@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -10,8 +10,9 @@ export class HomePageComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder ) { }
   
+  personaje:string = 'personaje';
   
-  myForm: FormGroup = this.formBuilder.group({
+  myForm: FormGroup<any> = this.formBuilder.group({
     webPage: [false, Validators.required],
     seoCampaign: [false, Validators.required],
     adsCampaign: [false, Validators.required],
@@ -19,10 +20,14 @@ export class HomePageComponent implements OnInit {
     languages: [1, Validators.required]
   })
   
+  // @Input() myFormForChild: FormGroup<any> = this.myForm
   
   
+  saveBudget() {
 
-
+  }
+  
+  
   ngOnInit(): void {
   }
 

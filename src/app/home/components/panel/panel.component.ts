@@ -9,6 +9,10 @@ export class PanelComponent implements OnInit {
 
   constructor() { }
 
+  // @Input() myFormForChild: FormGroup<any> = this.myForm
+
+
+
   ngOnInit(): void {
   }
 

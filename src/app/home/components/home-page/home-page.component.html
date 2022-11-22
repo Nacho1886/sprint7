@@ -1,34 +1,37 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-8 mb-5 mt-5">
-            <form class="list-group" [formGroup]="myForm">
+            <form class="list-group" [formGroup]="myForm" (ngSubmit)="saveBudget()">
                 <div class="list-group-item text-center container justify-content-center">
                     <div class="form-check form-switch">
                         <input class="form-check-input" formControlName="webPage" type="checkbox" role="switch" name="webPage" id="webPage">
                         <label class="form-check-label" for="webPage">Una pàgina web (500 €) </label>
                     </div>
                     <hr>
-                    <app-panel></app-panel>
+                    <app-panel [myForm]></app-panel>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" name="seoCampaign" id="seoCampaign">
+                        <input class="form-check-input" formControlName="seoCampaign" type="checkbox" role="switch" name="seoCampaign" id="seoCampaign">
                         <label class="form-check-label" for="seoCampaign">Una campanya SEO (300 €) </label>
                     </div>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" name="adsCampaign" id="adsCampaign">
+                        <input class="form-check-input" formControlName="adsCampaign" type="checkbox" role="switch" name="adsCampaign" id="adsCampaign">
                         <label class="form-check-label" for="adsCampaign">Una campanya de publicitat (200 €) </label>
                     </div>
                 </div>
-                <button class="col-6" type="submit">Enmagatzema</button>
-                <button class="col-6">Comparteix</button>
+                <div class="list-group-item">
+                    <button class="col-6 btn btn-outline-primary" type="submit">Enmagatzema</button>
+                    <button class="col-6 btn btn-outline-secondary">Comparteix</button>
+                </div>
             </form>
-            <button class="btn btn-outline-danger" routerLink="" >Torna enrere</button>
+            <button class="btn btn-outline-danger col-12 mt-2" routerLink="" >Torna enrere</button>
         </div>
         <div class="col-12 col-md-4 p-0">
             <app-sidebar></app-sidebar>
+            <div>{{myForm.value | json }}</div>
         </div>
     </div>
 </div>

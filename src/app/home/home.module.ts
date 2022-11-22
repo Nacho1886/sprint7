@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PanelComponent } from './components/panel/panel.component';
-import { SharedModule } from '../shared/shared.module';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { SharedModule } from '../shared/shared.module';
+import { PanelComponent } from './components/panel/panel.component';
 
 
 
@@ -14,8 +16,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     HomePageComponent
