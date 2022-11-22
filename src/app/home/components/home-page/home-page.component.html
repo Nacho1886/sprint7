@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-8 mb-5 mt-5">
-            <div class="list-group">
+            <form class="list-group" [formGroup]="myForm">
                 <div class="list-group-item text-center container justify-content-center">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" name="webPage" id="webPage">
+                        <input class="form-check-input" formControlName="webPage" type="checkbox" role="switch" name="webPage" id="webPage">
                         <label class="form-check-label" for="webPage">Una pàgina web (500 €) </label>
                     </div>
                     <hr>
@@ -22,8 +22,10 @@
                         <label class="form-check-label" for="adsCampaign">Una campanya de publicitat (200 €) </label>
                     </div>
                 </div>
-                    <button class="btn btn-outline-danger" routerLink="" >Torna enrere</button>
-            </div>
+                <button class="col-6" type="submit">Enmagatzema</button>
+                <button class="col-6">Comparteix</button>
+            </form>
+            <button class="btn btn-outline-danger" routerLink="" >Torna enrere</button>
         </div>
         <div class="col-12 col-md-4 p-0">
             <app-sidebar></app-sidebar>
