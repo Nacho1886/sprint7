@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BudgetCalculateService } from '../../services/budget-calculate.service';
 
 @Component({
   selector: 'app-panel',
@@ -8,12 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor( private budgetCalculateService: BudgetCalculateService ) { }
 
-  myForm: FormGroup<any> = this.formBuilder.group({
-    pages: [1, [Validators.required, Validators.min(1)]],
-    languages: [1, [Validators.required, Validators.min(1)]]
-  })
+  myForm = this.budgetCalculateService.form
+
 
   
 
