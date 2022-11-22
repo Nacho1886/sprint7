@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-panel',
@@ -7,9 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
-  @Input() myForm: any
+  myForm: FormGroup<any> = this.formBuilder.group({
+    pages: [1, [Validators.required, Validators.min(1)]],
+    languages: [1, [Validators.required, Validators.min(1)]]
+  })
 
   
 

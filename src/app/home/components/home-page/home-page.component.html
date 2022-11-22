@@ -8,7 +8,9 @@
                         <label class="form-check-label" for="webPage">Una pàgina web (500 €) </label>
                     </div>
                     <hr>
-                    <app-panel [myForm]="myForm"></app-panel>
+                    <div *ngIf="myForm.value.webPage">
+                        <app-panel></app-panel>
+                    </div>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">

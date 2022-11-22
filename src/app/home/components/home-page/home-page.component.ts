@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { Budget } from '../../interfaces/budget.form';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -14,16 +13,16 @@ export class HomePageComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       webPage: [false as boolean, Validators.required as Validators],
       seoCampaign: [false, Validators.required],
-      adsCampaign: [false, Validators.required],
-      pages: [1, Validators.required],
-      languages: [1, Validators.required]
+      adsCampaign: [false, Validators.required]
     })
   }
   
   personaje:string = 'personaje';
   
   
-  // @Input() myFormForChild: FormGroup<any> = this.myForm
+  public get modifyPages() {
+    return this.myForm
+  }
   
   
   saveBudget() {

@@ -1,1 +1,4 @@
-<input type="number" formControlName="pages">{{myForm}}
+<form [formGroup]="myForm">
+    <input type="number" formControlName="pages"> {{myForm.value.pages}}
+    <input type="number" formControlName="languages"> {{myForm.value.languages}}
+</form>
