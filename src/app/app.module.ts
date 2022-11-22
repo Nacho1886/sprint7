@@ -5,19 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { HomeModule } from './home/home.module';
+import { LandingModule } from './landing/landing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WelcomePageComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HomeModule
+    HomeModule,
+    LandingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

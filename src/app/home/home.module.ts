@@ -8,8 +8,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
-    PanelComponent,
-    HomePageComponent
+    HomePageComponent,
+    PanelComponent
   ],
   imports: [
     CommonModule,
