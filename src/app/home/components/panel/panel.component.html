@@ -1,4 +1,8 @@
 <form [formGroup]="myForm">
-    <input type="number" formControlName="pages"> {{myForm.value.pages}}
-    <input type="number" formControlName="languages"> {{myForm.value.languages}}
+    <div class="input-group mb-3">
+        <span class="input-group-text">Pàgines</span>
+        <input type="number" formControlName="pages" class="form-control" aria-label="pages">
+        <span class="input-group-text">Llengües</span>
+        <input type="number" formControlName="languages" class="form-control" aria-label="languages">
+    </div>
 </form>
