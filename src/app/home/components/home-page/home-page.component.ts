@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { Budget } from '../../interfaces/budget.form';
 
 @Component({
   selector: 'app-home-page',
@@ -7,18 +8,20 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  myForm: FormGroup<any> 
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: FormBuilder ) { 
+    this.myForm = this.formBuilder.group({
+      webPage: [false as boolean, Validators.required as Validators],
+      seoCampaign: [false, Validators.required],
+      adsCampaign: [false, Validators.required],
+      pages: [1, Validators.required],
+      languages: [1, Validators.required]
+    })
+  }
   
   personaje:string = 'personaje';
   
-  myForm: FormGroup<any> = this.formBuilder.group({
-    webPage: [false, Validators.required],
-    seoCampaign: [false, Validators.required],
-    adsCampaign: [false, Validators.required],
-    pages: [1, Validators.required],
-    languages: [1, Validators.required]
-  })
   
   // @Input() myFormForChild: FormGroup<any> = this.myForm
   

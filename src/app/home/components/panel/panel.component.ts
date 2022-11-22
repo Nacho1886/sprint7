@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-panel',
@@ -9,9 +9,9 @@ export class PanelComponent implements OnInit {
 
   constructor() { }
 
-  // @Input() myFormForChild: FormGroup<any> = this.myForm
+  @Input() myForm: any
 
-
+  
 
   ngOnInit(): void {
   }
