@@ -13,4 +13,5 @@ export class SidebarComponent {
   
   budgetArrayList: Budget[] = this.budgetCalculateService.showBudgetList()
 
+  // @Input('myForm') budgetArrayList: Budget[];
 }
