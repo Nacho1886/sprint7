@@ -11,6 +11,6 @@ export class SidebarComponent {
 
   constructor( private budgetCalculateService: BudgetCalculateService ) { }
   
-  // budgetArrayList: Budget[] = this.budgetCalculateService.showBudgetList()
+  budgetArrayList: Budget[] = this.budgetCalculateService.showBudgetList()
 
 }

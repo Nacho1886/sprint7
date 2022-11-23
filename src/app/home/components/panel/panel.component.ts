@@ -11,7 +11,7 @@ export class PanelComponent implements OnInit {
 
   constructor( private budgetCalculateService: BudgetCalculateService ) { }
 
-  myForm = this.budgetCalculateService.form
+  myForm = this.budgetCalculateService.myForm
 
 
   
