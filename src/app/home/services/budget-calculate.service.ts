@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Budget } from '../interfaces/budget.form';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetCalculateService {
+  budgetList: Budget[] = []
 
+  
   constructor( private fb: FormBuilder ) { }
 
   myForm: FormGroup<any> = this.fb.group({
@@ -18,5 +21,14 @@ export class BudgetCalculateService {
   
   get form() { return this.myForm }
 
+  public save() {
+    const form: Budget = this.myForm.value
+    // this.budgetList.push(form)
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 27 ~ BudgetCalculateService ~ save ~ budgetList", typeof this.budgetList)
+  }
+
+/*   public showBudgetList() {
+    return [...this.budgetList]
+  } */
 
 }

@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
   
   myForm = this.budgetCalculateService.form
   
+  save = this.budgetCalculateService.save
 
   
   
