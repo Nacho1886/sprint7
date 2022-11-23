@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-8 mb-5 mt-5">
-            <form class="list-group" [formGroup]="myForm" (ngSubmit)="save()">
+            <form class="list-group" [formGroup]="myForm" (ngSubmit)="save(myForm)">
                 <div class="list-group-item text-center container justify-content-center">
                     <div class="form-check form-switch">
                         <input class="form-check-input" formControlName="webPage" type="checkbox" role="switch" name="webPage" id="webPage">
