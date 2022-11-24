@@ -13,10 +13,6 @@ export class BudgetCalculateService {
   constructor( ) { }
   
 
-  isValid(myForm: FormGroup, inputName: string) {
-    
-    return myForm.controls[inputName].errors
-  }
 
   public get showBudgetList(): Budget[] { return budgetList }
 

@@ -9,22 +9,24 @@ import { FormGroup } from '@angular/forms';
 })
 export class PanelComponent {
   
-  @ViewChild('pages') pages!: ElementRef;
+  @ViewChild('pagesId') pages!: ElementRef;
+  @ViewChild('languagesId') languages!: ElementRef;
 
   constructor(private budgetCalculateService: BudgetCalculateService ) { }
 
   @Input('options') myForm!: FormGroup
 
-  plus(value: string): void {
-    /* let numberForm = Number(value)
-    return numberForm ++ */
-    this.pages.nativeElement.value ++
-    console.log(this.pages.nativeElement.value);
-    
+  
+
+  plus(value: ElementRef): void {
+    value.nativeElement.value ++
+  }
+  minun(value: ElementRef): void {
+    value.nativeElement.value --
   }
 
-  isValidForm() {
-    return this.budgetCalculateService.isValid(this.myForm, 'pages') ||
-    this.budgetCalculateService.isValid(this.myForm, 'languages')
-  } 
+
+  isValid(inputName: string) {
+    return this.myForm.controls[inputName].errors
+  }
 }
