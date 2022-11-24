@@ -9,6 +9,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class HomePageComponent implements OnInit {
 
+  numberRegEx = /\-?\d*\.?\d{1,2}/;
+
   constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { 
     
   }
@@ -23,14 +25,11 @@ export class HomePageComponent implements OnInit {
   
   onSubmit(){
     this.budgetCalculateService.saveBudget(this.myForm.value)
-    console.warn(this.myForm.value);
-
   }
 
-  shareUrl(event: Event){
+  /* shareUrl(event: Event){
     event.isTrusted
-    console.log("🚀 ~ file: home-page.component.ts ~ line 32 ~ HomePageComponent ~ shareUrl ~ event", event)
-  }
+  } */
   
   
   ngOnInit(): void {

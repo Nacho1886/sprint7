@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 import { SharedModule } from '../shared/shared.module';
 import { PanelComponent } from './components/panel/panel.component';
@@ -18,6 +20,8 @@ import { PanelComponent } from './components/panel/panel.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
     SharedModule
   ],
   exports: [

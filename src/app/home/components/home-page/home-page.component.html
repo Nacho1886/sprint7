@@ -26,9 +26,11 @@
                     </div>
                     <hr>
                 </div>
-                <div class="list-group-item">
-                    <button class="col-6 btn btn-outline-primary" type="submit">Enmagatzema</button>
-                    <button class="col-6 btn btn-outline-secondary" type="button"  >Comparteix</button>
+                <div class="list-group-item text-center container">
+                    <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid">Enmagatzema</button>
+                    <button mat-icon-button type="button" [disabled]="myForm.invalid">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
                 </div>
             </form>
             <button class="btn btn-outline-danger col-12 mt-2" routerLink="" >Torna enrere</button>
@@ -36,6 +38,7 @@
         <div class="col-12 col-md-4 p-0">
             <app-sidebar></app-sidebar>
             <div>{{myForm.value | json }}</div>
+            <div>{{myForm.valid | json }}</div>
         </div>
     </div>
 </div>
