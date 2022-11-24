@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { BudgetCalculateService } from '../../services/budget-calculate.service';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,21 +11,20 @@ export class PanelComponent {
   @ViewChild('pagesId') pages!: ElementRef;
   @ViewChild('languagesId') languages!: ElementRef;
 
-  constructor(private budgetCalculateService: BudgetCalculateService ) { }
+  constructor() { }
 
   @Input('options') myForm!: FormGroup
 
-  
-
-  plus(value: ElementRef): void {
-    value.nativeElement.value ++
-  }
-  minun(value: ElementRef): void {
-    value.nativeElement.value --
+  log1(log1: any){
+    console.log(typeof log1);
+    
   }
 
+  plus(inputName: string): void { this.myForm.value[inputName] ++ 
+  this.inputName.nativeElement.value ++}
 
-  isValid(inputName: string) {
-    return this.myForm.controls[inputName].errors
-  }
+  minun(inputName: string): void { this.myForm.value[inputName] -- }
+
+  isValid(inputName: string) { return this.myForm.controls[inputName].errors }
+
 }

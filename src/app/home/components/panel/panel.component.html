@@ -1,21 +1,21 @@
 <form [formGroup]="myForm">
     <div class="input-group mb-3">
-        <button mat-stroked-button color="accent" (click)="minun(pages)">
+        <button mat-stroked-button color="accent" (click)="minun('pages')">
             <mat-icon>exposure_neg_1</mat-icon>
         </button>
         <span class="input-group-text w-25">Pàgines</span>
         <input type="number" formControlName="pages" class="form-control" aria-label="pages" #pagesId>
-        <button mat-stroked-button color="accent" (click)="plus(pages)">
+        <button mat-stroked-button color="accent" (click)="plus('pages')">
             <mat-icon>exposure_plus_1</mat-icon>
         </button>
     </div>
     <div class="input-group mb-3">
-        <button mat-stroked-button color="accent" (click)="minun(languages)">
+        <button mat-stroked-button color="accent" (click)="minun('languages')">
             <mat-icon>exposure_neg_1</mat-icon>
         </button>
         <span class="input-group-text w-25">Llengües</span>
         <input type="number" formControlName="languages" class="form-control" aria-label="languages" #languagesId>
-        <button mat-stroked-button color="accent" (click)="plus(languages)">
+        <button mat-stroked-button color="accent" (click)="plus('languages')">
             <mat-icon>exposure_plus_1</mat-icon>
         </button>
     </div>
