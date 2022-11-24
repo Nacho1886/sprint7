@@ -13,9 +13,9 @@ export class BudgetCalculateService {
   public get showBudgetList(): Budget[] { return budgetList }
 
 
-  public saveBudget(form: FormGroup<any>) {
-    const jsonBudget: Budget = form.value
-    budgetList.push(jsonBudget)
+  public saveBudget(form: Budget) {
+    // const jsonBudget: Budget = form.value
+    budgetList.push(form)
   }
 
 

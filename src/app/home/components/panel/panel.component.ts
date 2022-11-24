@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { BudgetCalculateService } from '../../services/budget-calculate.service'
 })
 export class PanelComponent {
   
-  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { }
+  constructor(private budgetCalculateService: BudgetCalculateService ) { }
 
   @Input('options') formPanel: any
 }
