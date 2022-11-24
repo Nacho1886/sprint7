@@ -14,17 +14,18 @@ export class HomePageComponent implements OnInit {
   }
   
   myForm: FormGroup = this.fb.group({
-    webPage: [false as boolean, Validators.required as Validators],
-    seoCampaign: [false as boolean, Validators.required as Validators],
-    adsCampaign: [false as boolean, Validators.required as Validators],
-    options: this.fb.group({
-      pages: [1 as number, [Validators.required, Validators.min(1)] as Validators],
-      languages: [1 as number, [Validators.required, Validators.min(1)] as Validators]
-    })
+    webPage: [false, Validators.required],
+    seoCampaign: [false, Validators.required],
+    adsCampaign: [false, Validators.required],
+    pages: [1, [Validators.required, Validators.min(1)]],
+    languages: [1, [Validators.required, Validators.min(1)]]
   })
   
-  
-  save = this.budgetCalculateService.saveBudget
+  onSubmit(){
+    this.budgetCalculateService.saveBudget(this.myForm.value)
+    console.warn(this.myForm.value);
+
+  }
   
   
   ngOnInit(): void {

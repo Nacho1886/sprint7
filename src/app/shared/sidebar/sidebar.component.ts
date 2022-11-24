@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Budget } from 'src/app/home/interfaces/budget.form';
+import { Budget } from 'src/app/home/interfaces/Budget';
 import { BudgetCalculateService } from '../../home/services/budget-calculate.service';
 
 @Component({
@@ -12,5 +12,5 @@ export class SidebarComponent {
   constructor( private budgetCalculateService: BudgetCalculateService ) { }
   
   budgetArrayList: Budget[] = this.budgetCalculateService.showBudgetList
-  
+
 }

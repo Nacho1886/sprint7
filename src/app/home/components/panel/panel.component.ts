@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-panel',
@@ -10,5 +11,5 @@ export class PanelComponent {
   
   constructor(private budgetCalculateService: BudgetCalculateService ) { }
 
-  @Input('options') formPanel: any
+  @Input('options') formPanel!: FormGroup
 }

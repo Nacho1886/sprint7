@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Budget } from '../interfaces/budget.form';
+import { Budget } from '../interfaces/Budget';
 import { FormGroup } from '@angular/forms';
 
 const budgetList: Budget[] = []
