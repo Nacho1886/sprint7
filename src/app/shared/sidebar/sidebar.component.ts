@@ -12,6 +12,5 @@ export class SidebarComponent {
   constructor( private budgetCalculateService: BudgetCalculateService ) { }
   
   budgetArrayList: Budget[] = this.budgetCalculateService.showBudgetList
-
-  // @Input('myForm') budgetArrayList: Budget[];
+  
 }
