@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Budget } from '../interfaces/Budget';
-import { FormGroup } from '@angular/forms';
 
 const budgetList: Budget[] = []
 @Injectable({
@@ -13,10 +12,7 @@ export class BudgetCalculateService {
   public get showBudgetList(): Budget[] { return budgetList }
 
 
-  public saveBudget(form: Budget) {
-    // const jsonBudget: Budget = form.value
-    budgetList.push(form)
-  }
+  public saveBudget(form: Budget) { budgetList.push(form) }
 
 
 }

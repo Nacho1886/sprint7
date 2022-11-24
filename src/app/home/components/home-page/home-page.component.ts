@@ -26,6 +26,11 @@ export class HomePageComponent implements OnInit {
     console.warn(this.myForm.value);
 
   }
+
+  shareUrl(event: Event){
+    event.isTrusted
+    console.log("🚀 ~ file: home-page.component.ts ~ line 32 ~ HomePageComponent ~ shareUrl ~ event", event)
+  }
   
   
   ngOnInit(): void {
