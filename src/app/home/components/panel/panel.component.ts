@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
 
 @Component({
@@ -7,18 +7,9 @@ import { BudgetCalculateService } from '../../services/budget-calculate.service'
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss']
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent {
   
   constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { }
 
-  myForm: FormGroup<any> = this.fb.group({
-    pages: [1 as number, [Validators.required, Validators.min(1)] as Validators],
-    languages: [1 as number, [Validators.required, Validators.min(1)] as Validators]
-  })
-
-/*   public saveDataPanel() {
-} */
-ngOnInit(): void {
-    this.budgetCalculateService.dataPanel = this.myForm
-  }
+  @Input('options') formPanel: any
 }

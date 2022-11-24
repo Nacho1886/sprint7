@@ -9,7 +9,7 @@
                     </div>
                     <hr>
                     <div *ngIf="myForm.value.webPage">
-                        <app-panel></app-panel>
+                        <app-panel [options]="myForm.get('options')"></app-panel>
                     </div>
                 </div>
                 <div class="list-group-item text-center container">
