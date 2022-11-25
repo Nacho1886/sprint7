@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Budget } from '../interfaces/Budget';
-import { FormGroup } from '@angular/forms';
 
 const budgetList: Budget[] = []
 @Injectable({
@@ -8,20 +7,20 @@ const budgetList: Budget[] = []
 })
 export class BudgetCalculateService {
 
-  private _saved: boolean = false;
+  // private _saved: boolean = false;
   
   constructor( ) { }
   
   public get showBudgetList(): Budget[] { return budgetList }
 
 
-/*   private formIsValid(form: Budget) {
-    Object.values()
-    
+  public formIsValid(form: Budget): boolean {
+    const pepe = Object.values(form).find(e => e === true)
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 19 ~ BudgetCalculateService ~ formIsValid ~ pepe", pepe)
+    return pepe
   }
- */
+
   public saveBudget(form: Budget) {
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 24 ~ BudgetCalculateService ~ saveBudget ~ form", form)
     budgetList.push(form)
   }
 

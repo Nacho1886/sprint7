@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -9,22 +9,26 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class HomePageComponent implements OnInit {
 
-  numberRegEx = /\-?\d*\.?\d{1,2}/;
+  myForm: FormGroup
 
-  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { 
-    
+  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) {     
+    this.myForm = this.fb.group({
+      webPage: [false, Validators.required],
+      seoCampaign: [false, Validators.required],
+      adsCampaign: [false, Validators.required],
+      options: this.fb.group({
+        pages: [1, [Validators.required, Validators.min(1)]],
+        languages: [1, [Validators.required, Validators.min(1)]]
+      })
+    }, { validator: this.formIsValid }
+    )
   }
   
-  myForm: FormGroup = this.fb.group({
-    webPage: [false, Validators.required],
-    seoCampaign: [false, Validators.required],
-    adsCampaign: [false, Validators.required],
-    options: this.fb.group({
-      pages: [1 as number, [Validators.required, Validators.min(1)] as Validators],
-      languages: [1 as number, [Validators.required, Validators.min(1)] as Validators]
-    })
-  })
+  formIsValid = this.budgetCalculateService.formIsValid(this.showForm.value)
 
+  get showForm() {
+    return this.myForm as FormGroup
+  }
   get showOptions() {
     return this.myForm.get('options') as FormGroup
   }
@@ -35,6 +39,8 @@ export class HomePageComponent implements OnInit {
 
   
   ngOnInit(): void {
+    // this.myForm.addControl('formIsValid', new FormControl(this.budgetCalculateService.formIsValid(this.showForm.value), Validators.requiredTrue))
+
   }
 
 }
