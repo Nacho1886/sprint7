@@ -16,12 +16,15 @@ export class PanelComponent {
   @Input('options') myForm!: FormGroup
 
   log1(log1: any){
-    console.log(typeof log1);
+    console.log( log1);
     
   }
 
   plus(inputName: string): void { this.myForm.value[inputName] ++ 
-  this.inputName.nativeElement.value ++}
+    const nameControl = this.myForm.get('pages');
+    nameControl?.valueChanges
+    console.log("🚀 ~ file: panel.component.ts ~ line 25 ~ PanelComponent ~ plus ~ nameControl", nameControl?.valueChanges)
+}
 
   minun(inputName: string): void { this.myForm.value[inputName] -- }
 
