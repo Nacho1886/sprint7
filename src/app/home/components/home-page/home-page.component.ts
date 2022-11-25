@@ -27,10 +27,6 @@ export class HomePageComponent implements OnInit {
     this.budgetCalculateService.saveBudget(this.myForm.value)
   }
 
-  /* shareUrl(event: Event){
-    event.isTrusted
-  } */
-  
   
   ngOnInit(): void {
   }
