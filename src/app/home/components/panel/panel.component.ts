@@ -7,7 +7,6 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent {
-
   constructor() { }
 
   @Input('options') myForm!: FormGroup

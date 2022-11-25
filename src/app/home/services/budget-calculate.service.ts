@@ -12,13 +12,17 @@ export class BudgetCalculateService {
   
   constructor( ) { }
   
-
-
   public get showBudgetList(): Budget[] { return budgetList }
 
 
+/*   private formIsValid(form: Budget) {
+    Object.values()
+    
+  }
+ */
   public saveBudget(form: Budget) {
-    budgetList.push(form) 
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 24 ~ BudgetCalculateService ~ saveBudget ~ form", form)
+    budgetList.push(form)
   }
 
 

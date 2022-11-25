@@ -4,24 +4,24 @@
             <form class="list-group" [formGroup]="myForm" (ngSubmit)="onSubmit()">
                 <div class="list-group-item text-center container justify-content-center">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" formControlName="webPage" type="checkbox" role="switch" name="webPage" id="webPage">
+                        <input class="form-check-input" formControlName="webPage" data-price="500" type="checkbox" role="switch" name="webPage" id="webPage">
                         <label class="form-check-label" for="webPage">Una pàgina web (500 €) </label>
                     </div>
                     <hr>
                     <div *ngIf="myForm.value.webPage">
-                        <app-panel [options]="myForm"></app-panel>
+                        <app-panel [options]="showOptions"></app-panel>
                     </div>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" formControlName="seoCampaign" type="checkbox" role="switch" name="seoCampaign" id="seoCampaign">
+                        <input class="form-check-input" formControlName="seoCampaign" data-price="300" type="checkbox" role="switch" name="seoCampaign" id="seoCampaign">
                         <label class="form-check-label" for="seoCampaign">Una campanya SEO (300 €) </label>
                     </div>
                     <hr>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" formControlName="adsCampaign" type="checkbox" role="switch" name="adsCampaign" id="adsCampaign">
+                        <input class="form-check-input" formControlName="adsCampaign" data-price="200" type="checkbox" role="switch" name="adsCampaign" id="adsCampaign">
                         <label class="form-check-label" for="adsCampaign">Una campanya de publicitat (200 €) </label>
                     </div>
                     <hr>

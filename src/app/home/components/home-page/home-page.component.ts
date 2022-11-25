@@ -19,9 +19,15 @@ export class HomePageComponent implements OnInit {
     webPage: [false, Validators.required],
     seoCampaign: [false, Validators.required],
     adsCampaign: [false, Validators.required],
-    pages: [1, [Validators.required, Validators.min(1)]],
-    languages: [1, [Validators.required, Validators.min(1)]]
+    options: this.fb.group({
+      pages: [1 as number, [Validators.required, Validators.min(1)] as Validators],
+      languages: [1 as number, [Validators.required, Validators.min(1)] as Validators]
+    })
   })
+
+  get showOptions() {
+    return this.myForm.get('options') as FormGroup
+  }
   
   onSubmit(){
     this.budgetCalculateService.saveBudget(this.myForm.value)
