@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl, AbstractControlOptions } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -20,15 +20,9 @@ export class HomePageComponent implements OnInit {
         pages: [1, [Validators.required, Validators.min(1)]],
         languages: [1, [Validators.required, Validators.min(1)]]
       })
-    }, { validator: this.formIsValid }
-    )
-  }
-  
-  formIsValid = this.budgetCalculateService.formIsValid(this.showForm.value)
+    }, { validator: [this.budgetCalculateService.formIsValid] } as AbstractControlOptions
+  )}
 
-  get showForm() {
-    return this.myForm as FormGroup
-  }
   get showOptions() {
     return this.myForm.get('options') as FormGroup
   }
@@ -38,9 +32,6 @@ export class HomePageComponent implements OnInit {
   }
 
   
-  ngOnInit(): void {
-    // this.myForm.addControl('formIsValid', new FormControl(this.budgetCalculateService.formIsValid(this.showForm.value), Validators.requiredTrue))
-
-  }
+  ngOnInit(): void { }
 
 }

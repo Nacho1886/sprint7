@@ -1,0 +1,22 @@
+[
+    {
+        "id": "webPage",
+        "price": 500
+    },
+    {
+        "id": "seoCampaign",
+        "price": 300
+    },
+    {
+        "id": "adsCampaign",
+        "price": 200
+    },
+    {
+        "id": "pages",
+        "price": 30
+    },
+    {
+        "id": "languages",
+        "price": 30
+    }
+]

@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+
+import servicesData from '../../../assets/data/services.json';
 import { Budget } from '../interfaces/Budget';
 
 const budgetList: Budget[] = []
@@ -6,18 +9,27 @@ const budgetList: Budget[] = []
   providedIn: 'root'
 })
 export class BudgetCalculateService {
+  private _services = servicesData
+  totalPrice: number
 
-  // private _saved: boolean = false;
-  
-  constructor( ) { }
+  constructor( ) {
+    this.totalPrice = 0
+  }
   
   public get showBudgetList(): Budget[] { return budgetList }
 
 
-  public formIsValid(form: Budget): boolean {
-    const pepe = Object.values(form).find(e => e === true)
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 19 ~ BudgetCalculateService ~ formIsValid ~ pepe", pepe)
-    return pepe
+  public calculateTotalPrice(form: Budget) {
+    
+    this._services.forEach(({id, price}) => {
+      const name = Object.values(id)
+      form[name] === true
+    })
+  }
+
+  public formIsValid(control: AbstractControl) {
+    const valid = Object.values(control.value).find(e => e === true)
+    return valid || 'Invalid'
   }
 
   public saveBudget(form: Budget) {

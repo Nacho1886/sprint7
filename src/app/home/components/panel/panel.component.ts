@@ -11,16 +11,10 @@ export class PanelComponent {
 
   @Input('options') myForm!: FormGroup
 
-  plus(inputName: string): void { 
+  calculateIncDec(inputName: string, increment: boolean = false): void { 
       let nameControl = this.myForm.get(inputName)!.value;
-      nameControl++
+      increment ? nameControl++ : nameControl--
       this.myForm.get(inputName)!.patchValue(nameControl)
-  }
-
-  minun(inputName: string): void { 
-    let nameControl = this.myForm.get(inputName)!.value;
-    nameControl--
-    this.myForm.get(inputName)!.patchValue(nameControl)
   }
 
   isValid(inputName: string) { return this.myForm.controls[inputName].errors }

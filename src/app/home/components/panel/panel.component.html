@@ -1,23 +1,23 @@
 <form [formGroup]="myForm">
     <div class="input-group mb-3">
-        <button mat-stroked-button color="accent" (click)="minun('pages')">
+        <button mat-stroked-button color="accent" (click)="calculateIncDec('pages')">
             <mat-icon>exposure_neg_1</mat-icon>
         </button>
         <span class="input-group-text w-25">Pàgines</span>
         <input type="number" formControlName="pages" data-price="30" class="form-control" aria-label="pages" #pagesId>
-        <button mat-stroked-button color="accent" (click)="plus('pages')">
+        <button mat-stroked-button color="accent" (click)="calculateIncDec('pages', true)">
             <mat-icon>exposure_plus_1</mat-icon>
         </button>
     </div>
     <mat-error class="form-text text-danger" *ngIf="isValid('pages')">
         Mínim una pàgina</mat-error>
     <div class="input-group mb-3">
-        <button mat-stroked-button color="accent" (click)="minun('languages')">
+        <button mat-stroked-button color="accent" (click)="calculateIncDec('languages')">
             <mat-icon>exposure_neg_1</mat-icon>
         </button>
         <span class="input-group-text w-25">Llengües</span>
         <input type="number" formControlName="languages" data-price="30" class="form-control" aria-label="languages" #languagesId>
-        <button mat-stroked-button color="accent" (click)="plus('languages')">
+        <button mat-stroked-button color="accent" (click)="calculateIncDec('languages', true)">
             <mat-icon>exposure_plus_1</mat-icon>
         </button>
     </div>
