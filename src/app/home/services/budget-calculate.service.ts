@@ -9,7 +9,7 @@ const budgetList: Budget[] = []
   providedIn: 'root'
 })
 export class BudgetCalculateService {
-  
+
   private _services = servicesData
   private _totalPrice: number
 
@@ -17,7 +17,7 @@ export class BudgetCalculateService {
     this._totalPrice = 0
   }
   
-  public get showBudgetList(): Budget[] { return [...budgetList] }
+  public get showBudgetList(): Budget[] { return budgetList }
   
   
   public calculateTotalPrice(form: FormGroup): void {
@@ -30,10 +30,10 @@ export class BudgetCalculateService {
     })
   }
 
-  public pepe(control: AbstractControl) {
+/*   public pepe(control: AbstractControl) {
     console.log("🚀 ~ file: budget-calculate.service.ts ~ line 37 ~ BudgetCalculateService ~ pepe ~ control", control)
     return 0
-  }
+  } */
 
   public formIsValid(control: AbstractControl) {
     const valid = Object.values(control.value).find(e => e === true)
@@ -41,7 +41,9 @@ export class BudgetCalculateService {
   }
 
   public saveBudget(formJson: Budget) {
-    budgetList.push(formJson)
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 44 ~ BudgetCalculateService ~ saveBudget ~ formJson", formJson)
+    budgetList.push({...formJson})
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 46 ~ BudgetCalculateService ~ saveBudget ~ budgetList", budgetList)
   }
 
 

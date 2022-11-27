@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
-import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl, AbstractControlOptions } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -9,20 +9,21 @@ import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl, Abstr
 })
 export class HomePageComponent implements OnInit {
 
-  myForm: FormGroup
+  myForm!: FormGroup
   
-  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) {     
+  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { }
+
+  initForm() {
     this.myForm = this.fb.group({
       webPage: [false, Validators.required],
       seoCampaign: [false, Validators.required],
       adsCampaign: [false, Validators.required],
       options: this.fb.group({
-        pages: [1, [Validators.required, Validators.min(1), this.budgetCalculateService.pepe]],
+        pages: [1, [Validators.required, Validators.min(1)]],
         languages: [1, [Validators.required, Validators.min(1)]]
       })
     }, { validator: [this.budgetCalculateService.formIsValid] } as AbstractControlOptions
     )
-  
   }
   
   get optionsDisplay(): boolean {
@@ -36,15 +37,14 @@ export class HomePageComponent implements OnInit {
     return this.myForm.get('options') as FormGroup
   }
   
-  onChange() {
-    this.budgetCalculateService.calculateTotalPrice(this.myForm)
-  }
-  
   onSubmit() {
     this.budgetCalculateService.saveBudget(this.myForm.value)
+    this.initForm()
   }
   
   
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.initForm()
+  }
 
 }
