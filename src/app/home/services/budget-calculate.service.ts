@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 import servicesData from '../../../assets/data/services.json';
 import { Budget } from '../interfaces/Budget';
@@ -9,22 +9,30 @@ const budgetList: Budget[] = []
   providedIn: 'root'
 })
 export class BudgetCalculateService {
+  
   private _services = servicesData
-  totalPrice: number
+  private _totalPrice: number
 
   constructor( ) {
-    this.totalPrice = 0
+    this._totalPrice = 0
   }
   
-  public get showBudgetList(): Budget[] { return budgetList }
-
-
-  public calculateTotalPrice(form: Budget) {
-    
+  public get showBudgetList(): Budget[] { return [...budgetList] }
+  
+  
+  public calculateTotalPrice(form: FormGroup): void {
     this._services.forEach(({id, price}) => {
-      const name = Object.values(id)
-      form[name] === true
+      // const name = Object.values(id)
+      if (form.get(id)!.value === true) this._totalPrice += price!
+      if (form.get('webPage')!.value === true) {
+        // form.get('options')
+      }
     })
+  }
+
+  public pepe(control: AbstractControl) {
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 37 ~ BudgetCalculateService ~ pepe ~ control", control)
+    return 0
   }
 
   public formIsValid(control: AbstractControl) {
@@ -32,8 +40,8 @@ export class BudgetCalculateService {
     return valid || 'Invalid'
   }
 
-  public saveBudget(form: Budget) {
-    budgetList.push(form)
+  public saveBudget(formJson: Budget) {
+    budgetList.push(formJson)
   }
 
 

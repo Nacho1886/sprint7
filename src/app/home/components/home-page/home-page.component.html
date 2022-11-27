@@ -1,15 +1,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-8 mb-5 mt-5">
-            <form class="list-group" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <form class="list-group" [formGroup]="myForm" (ngSubmit)="onSubmit()" (change)="onChange()">
                 <div class="list-group-item text-center container justify-content-center">
                     <div class="form-check form-switch">
                         <input class="form-check-input" formControlName="webPage" data-price="500" type="checkbox" role="switch" name="webPage" id="webPage">
                         <label class="form-check-label" for="webPage">Una pàgina web (500 €) </label>
                     </div>
                     <hr>
-                    <div *ngIf="myForm.value.webPage">
-                        <app-panel [options]="showOptions"></app-panel>
+                    <div *ngIf="optionsDisplay">
+                        <app-panel [options]="showOptions"  [optionsDisplay]="optionsDisplay"></app-panel>
                     </div>
                 </div>
                 <div class="list-group-item text-center container">

@@ -1,3 +1,4 @@
+import { OnDestroy } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
@@ -6,17 +7,31 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss']
 })
-export class PanelComponent {
-  constructor() { }
+export class PanelComponent implements OnDestroy {
 
-  @Input('options') myForm!: FormGroup
+  @Input('options') myOptionsForm!: FormGroup
+  @Input('optionsDisplay') optionsDisplay!: boolean
+
+  constructor() { }
+  
 
   calculateIncDec(inputName: string, increment: boolean = false): void { 
-      let nameControl = this.myForm.get(inputName)!.value;
+      let nameControl = this.myOptionsForm.get(inputName)!.value;
       increment ? nameControl++ : nameControl--
-      this.myForm.get(inputName)!.patchValue(nameControl)
+      this.myOptionsForm.get(inputName)!.patchValue(nameControl)
   }
 
-  isValid(inputName: string) { return this.myForm.controls[inputName].errors }
 
+  isInvalid(inputName: string) { return this.myOptionsForm.controls[inputName].errors }
+
+
+  resetValues(inputName: string) {
+    this.myOptionsForm.get(inputName)!.patchValue(1)
+  }
+
+  
+  ngOnDestroy(): void {
+    this.resetValues('pages')
+    this.resetValues('languages')
+  }
 }

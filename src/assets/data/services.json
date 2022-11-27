@@ -12,11 +12,16 @@
         "price": 200
     },
     {
-        "id": "pages",
-        "price": 30
-    },
-    {
-        "id": "languages",
-        "price": 30
+        "id": "options",
+        "options":[ 
+            {
+                "id": "pages",
+                "price": 30
+            },
+            {
+                "id": "languages",
+                "price": 30
+            }
+        ]
     }
 ]
