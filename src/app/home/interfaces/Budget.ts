@@ -7,6 +7,8 @@ export interface Budget {
     webPage: boolean, 
     seoCampaign: boolean, 
     adsCampaign: boolean, 
-    options: Options
+    options: Options,
+    
+    [key: string]: any;
 }
 

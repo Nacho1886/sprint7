@@ -27,10 +27,10 @@
                     <hr>
                 </div>
                 <div class="list-group-item text-center container">
-                    <h3>Preu total: {{total}}€</h3>
+                    <h3>Preu total: {{calculateTotalPrice(myForm.value, showServices)}}€</h3>
                     <hr>
                     <div *ngIf="!showChange">
-                        <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid" (pointermove)="calculateTotalPrice(myForm, showServices)">Enmagatzema</button>
+                        <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid" (pointermove)="calculateTotalPrice(myForm.value, showServices)">Enmagatzema</button>
                         <button mat-icon-button type="button" [disabled]="myForm.invalid">
                             <mat-icon>open_in_new</mat-icon>
                         </button>

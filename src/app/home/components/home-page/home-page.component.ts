@@ -16,10 +16,10 @@ export class HomePageComponent {
     this.initForm()
     this._change = false
   }
-  total: number = this.budgetCalculateService.showTotalPrice
   
   initForm() {
     this.myForm = this.fb.group({
+      // webPage: [false, Validators.required],
       webPage: [false, Validators.required],
       seoCampaign: [false, Validators.required],
       adsCampaign: [false, Validators.required],
@@ -29,6 +29,14 @@ export class HomePageComponent {
       })
     }, { validator: [this.budgetCalculateService.formIsValid] } as AbstractControlOptions
     )
+    webPage: this.fb.group({
+      webPage: [false, Validators.required],
+      options: this.fb.group({
+        pages: [1, [Validators.required, Validators.min(1)]],
+        languages: [1, [Validators.required, Validators.min(1)]]
+      })
+    })
+
   }
   
   
