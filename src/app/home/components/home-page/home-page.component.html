@@ -27,13 +27,16 @@
                     <hr>
                 </div>
                 <div class="list-group-item text-center container">
-                    <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid">Enmagatzema</button>
-                    <button mat-icon-button type="button" [disabled]="myForm.invalid">
-                        <mat-icon>open_in_new</mat-icon>
-                    </button>
+                    <div *ngIf="!saved">
+                        <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid" (click)="change()">Enmagatzema</button>
+                        <button mat-icon-button type="button" [disabled]="myForm.invalid">
+                            <mat-icon>open_in_new</mat-icon>
+                        </button>
+                    </div>
+                    <app-client-names *ngIf="saved" [change]="change"></app-client-names>
                 </div>
             </form>
-            <button class="btn btn-outline-danger col-12 mt-2" routerLink="" >Torna enrere</button>
+            <button class="btn btn-outline-danger col-12 mt-2" routerLink="">Torna enrere</button>
         </div>
         <div class="col-12 col-md-4 p-0">
             <app-sidebar></app-sidebar>

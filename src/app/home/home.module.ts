@@ -9,13 +9,15 @@ import {MatIconModule} from '@angular/material/icon';
 
 import { SharedModule } from '../shared/shared.module';
 import { PanelComponent } from './components/panel/panel.component';
+import { ClientNamesComponent } from './components/client-names/client-names.component';
 
 
 
 @NgModule({
   declarations: [
     HomePageComponent,
-    PanelComponent
+    PanelComponent,
+    ClientNamesComponent
   ],
   imports: [
     CommonModule,

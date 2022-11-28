@@ -1,0 +1,10 @@
+<form [formGroup]="clientForm">
+    <mat-form-field>
+        <input matInput placeholder="Nom del pressupost" formControlName="budgetName">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Nom del client" formControlName="clientName">
+    </mat-form-field>
+    <button type="submit" mat-stroked-button color="accent" (click)="change()">Guarda</button>
+</form>
