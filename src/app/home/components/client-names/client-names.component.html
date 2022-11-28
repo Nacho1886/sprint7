@@ -1,13 +1,15 @@
 <form [formGroup]="clientForm" (ngSubmit)="onSubmitClient()">
-    <mat-form-field>
-        <input matInput placeholder="Nom del pressupost" formControlName="budgetName">
-        <mat-hint align="start"><em><small>Mínim tres caracters</small></em></mat-hint>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-        <input matInput placeholder="Nom del client" formControlName="clientName">
-        <mat-hint align="start"><em><small>Mínim tres caracters</small></em></mat-hint>
-    </mat-form-field>
-    <br>
-    <button type="submit" mat-stroked-button color="accent" [disabled]="clientForm.invalid" (click)="change()">Guarda</button>
+    <div cellspacing="0">
+                <mat-form-field class="col-12 col-lg-6 w-75">
+                    <input matInput placeholder="Nom del pressupost" formControlName="name">
+                    <mat-hint align="end"><em><small>Mínim tres caracters</small></em></mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-12 col-lg-6 w-75">
+                    <input matInput placeholder="Nom del client" formControlName="client">
+                    <mat-hint align="end"><em><small>Mínim tres caracters</small></em></mat-hint>
+                </mat-form-field>
+                <br>
+                <button type="submit" mat-stroked-button color="accent" [disabled]="clientForm.invalid"
+                    (click)="change()">Guarda</button>
+    </div>
 </form>

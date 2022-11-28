@@ -1,8 +1,9 @@
 <div class="container-fluid text-center">
     <h5 class="pt-3">Pressupostos anteriors</h5>
     <hr class="pb-4">
-    <div *ngFor="let budget of budgetArrayList">
-        <p>{{budget.webPage}} {{budget.seoCampaign}} {{budget.adsCampaign}}</p>
-        <p>{{budget.options.pages}} {{budget.options.languages}}</p>
+    <div *ngFor="let budgetClient of budgetArrayList">
+        <p>{{budgetClient | json}}</p>
+        <!-- <p>{{budget.webPage}} {{budget.seoCampaign}} {{budget.adsCampaign}}</p>
+        <p>{{budget.options.pages}} {{budget.options.languages}}</p> -->
     </div>
 </div>

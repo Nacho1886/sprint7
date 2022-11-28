@@ -28,13 +28,8 @@ export class HomePageComponent implements OnInit {
     )
   }
   
-  get saved(): boolean {
-    return this._saved
-  }
-  change(): void {
-    this._saved = !this._saved
-    console.log("🚀 ~ file: home-page.component.ts ~ line 31 ~ HomePageComponent ~ getsaved ~ saved", this.saved)
-  }
+  get saved(): boolean {  return this._saved }
+  change(): void { this._saved = !this._saved }
   
   get optionsDisplay(): boolean {
     return this.myForm.get('webPage')!.value
@@ -49,6 +44,7 @@ export class HomePageComponent implements OnInit {
   
   onSubmit() {
     this.budgetCalculateService.saveBudget(this.myForm.value)
+    this.change()
     this.initForm()
   }
   

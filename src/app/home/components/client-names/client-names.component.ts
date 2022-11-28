@@ -14,13 +14,13 @@ export class ClientNamesComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private BudgetCalculateService: BudgetCalculateService) {
     this.clientForm = this.fb.group({
-      budgetName: ['', [Validators.required, Validators.minLength(3)]],
-      clientName: ['', [Validators.required, Validators.minLength(3)]]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      client: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
 
   onSubmitClient() {
-
+    this.BudgetCalculateService.saveAllBudgetClient(this.clientForm.value)
   }
 
   ngOnInit(): void {

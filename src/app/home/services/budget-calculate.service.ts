@@ -3,8 +3,10 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 
 import servicesData from '../../../assets/data/services.json';
 import { Budget } from '../interfaces/Budget';
+import { ClientRegistration } from '../interfaces/ClientRegistration';
+import { BudgetClient } from '../interfaces/BudgetClient';
 
-const budgetList: Budget[] = []
+const budgetList: BudgetClient[] = []
 @Injectable({
   providedIn: 'root'
 })
@@ -12,14 +14,17 @@ export class BudgetCalculateService {
 
   private _services = servicesData
   private _totalPrice: number
+  private _budget!: Budget
 
   constructor( ) {
     this._totalPrice = 0
   }
   
   public get showTotalPrice(): number { return this._totalPrice }
-  public get showBudgetList(): Budget[] { return budgetList }
+  public get showBudgetClientList(): BudgetClient[] { return budgetList }
   
+  get saved(): boolean {  return this._saved }
+  change(): void { this._saved = !this._saved }
   
   public calculateTotalPrice(form: FormGroup): void {
     this._services.forEach(({id, price}) => {
@@ -42,9 +47,17 @@ export class BudgetCalculateService {
   }
 
   public saveBudget(formJson: Budget) {
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 44 ~ BudgetCalculateService ~ saveBudget ~ formJson", formJson)
-    budgetList.push({...formJson})
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 46 ~ BudgetCalculateService ~ saveBudget ~ budgetList", budgetList)
+    this._budget = {...formJson}
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 47 ~ BudgetCalculateService ~ saveBudget ~ this._budget", this._budget)
+  }
+  public saveAllBudgetClient(formJson: ClientRegistration) {
+    const completBudget: BudgetClient = {
+      clientRegistration: formJson,
+      service: this._budget,
+      price: this._totalPrice,
+      date: new Date()
+    }
+    budgetList.push({...completBudget})
   }
 
 
