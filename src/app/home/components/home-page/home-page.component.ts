@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
 import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@angular/forms';
 
@@ -10,9 +10,12 @@ import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@ang
 export class HomePageComponent implements OnInit {
 
   myForm!: FormGroup
-  private _saved: boolean = false;
-  
-  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { }
+  change: boolean
+
+  constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) {
+    this.initForm()
+    this.change = false
+  }
   total: number = this.budgetCalculateService.showTotalPrice
   
   initForm() {
@@ -28,8 +31,6 @@ export class HomePageComponent implements OnInit {
     )
   }
   
-  get saved(): boolean {  return this._saved }
-  change(): void { this._saved = !this._saved }
   
   get optionsDisplay(): boolean {
     return this.myForm.get('webPage')!.value
@@ -41,16 +42,19 @@ export class HomePageComponent implements OnInit {
   get showOptions(): FormGroup {
     return this.myForm.get('options') as FormGroup
   }
+
+  // public get saved(): boolean {  return this.saved }
+  // public change(save: boolean): void { save = !save }
+  // public change(): void { this.saved = !this.saved }
   
   onSubmit() {
     this.budgetCalculateService.saveBudget(this.myForm.value)
-    this.change()
+    this.budgetCalculateService.change = !this.budgetCalculateService.change
     this.initForm()
   }
   
   
   ngOnInit(): void {
-    this.initForm()
   }
 
 }

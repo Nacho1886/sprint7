@@ -9,10 +9,10 @@ import { BudgetCalculateService } from '../../services/budget-calculate.service'
 })
 export class ClientNamesComponent implements OnInit {
 
-  @Input() change: any;
+  @Input() change!: boolean;
   clientForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private BudgetCalculateService: BudgetCalculateService) {
+  constructor(private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService) {
     this.clientForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       client: ['', [Validators.required, Validators.minLength(3)]]
@@ -20,7 +20,8 @@ export class ClientNamesComponent implements OnInit {
   }
 
   onSubmitClient() {
-    this.BudgetCalculateService.saveAllBudgetClient(this.clientForm.value)
+    this.budgetCalculateService.saveAllBudgetClient(this.clientForm.value)
+    this.change = !this.change
   }
 
   ngOnInit(): void {

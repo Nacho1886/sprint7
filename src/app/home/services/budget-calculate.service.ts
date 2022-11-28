@@ -15,6 +15,8 @@ export class BudgetCalculateService {
   private _services = servicesData
   private _totalPrice: number
   private _budget!: Budget
+  change: boolean = false
+
 
   constructor( ) {
     this._totalPrice = 0
@@ -23,9 +25,15 @@ export class BudgetCalculateService {
   public get showTotalPrice(): number { return this._totalPrice }
   public get showBudgetClientList(): BudgetClient[] { return budgetList }
   
-  get saved(): boolean {  return this._saved }
-  change(): void { this._saved = !this._saved }
-  
+
+
+  public formIsValid(control: AbstractControl) {
+    const valid = Object.values(control.value).find(e => e === true)
+    return valid || 'Invalid'
+  }
+
+  public saveBudget(formJson: Budget) { this._budget = {...formJson} }
+
   public calculateTotalPrice(form: FormGroup): void {
     this._services.forEach(({id, price}) => {
       // const name = Object.values(id)
@@ -36,20 +44,6 @@ export class BudgetCalculateService {
     })
   }
 
-/*   public pepe(control: AbstractControl) {
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 37 ~ BudgetCalculateService ~ pepe ~ control", control)
-    return 0
-  } */
-
-  public formIsValid(control: AbstractControl) {
-    const valid = Object.values(control.value).find(e => e === true)
-    return valid || 'Invalid'
-  }
-
-  public saveBudget(formJson: Budget) {
-    this._budget = {...formJson}
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 47 ~ BudgetCalculateService ~ saveBudget ~ this._budget", this._budget)
-  }
   public saveAllBudgetClient(formJson: ClientRegistration) {
     const completBudget: BudgetClient = {
       clientRegistration: formJson,
@@ -60,5 +54,8 @@ export class BudgetCalculateService {
     budgetList.push({...completBudget})
   }
 
-
+/*   public pepe(control: AbstractControl) {
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 37 ~ BudgetCalculateService ~ pepe ~ control", control)
+    return 0
+  } */
 }

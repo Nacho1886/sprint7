@@ -10,7 +10,6 @@ import { FormGroup } from '@angular/forms';
 export class PanelComponent implements OnDestroy {
 
   @Input('options') myOptionsForm!: FormGroup
-  @Input('optionsDisplay') optionsDisplay!: boolean
 
   constructor() { }
   
