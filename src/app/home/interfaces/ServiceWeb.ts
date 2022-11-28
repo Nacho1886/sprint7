@@ -1,4 +1,5 @@
 export interface ServiceWeb {
     "id": string,
-    "price": number
+    "price": number,
+    "options"?: ServiceWeb[]
 }

@@ -20,16 +20,12 @@ const budgetList: BudgetClient[] = []
 export class BudgetCalculateService {
 
   private _services: ServiceWeb[] = servicesData
-  // private _totalPrice: number
   private _budget!: Budget
   change: boolean = false
 
 
-  constructor() {
-    // this._totalPrice = 0
-  }
+  constructor() { }
 
-  // public get showTotalPrice(): number { return this._totalPrice }
   public get showBudgetClientList(): BudgetClient[] { return budgetList }
   public get showBudget(): Budget { return this._budget }
   public get showServices() { return this._services }
@@ -47,11 +43,15 @@ export class BudgetCalculateService {
     for (const key in formJson) {
       const element = formJson[key];
       if (element) {
-        services.forEach(({ id, price }) => {
-          if (id === key) total += price
+        services.forEach(({ id, price, options }) => {
+          if (id === key) {
+            total += price
+            if (options) options.forEach(e => total += e.price * formJson.options[e.id])
+          }
         })
       }
     }
+    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 56 ~ BudgetCalculateService ~ calculateTotalPrice ~ total", total)
     return total
   }
   
