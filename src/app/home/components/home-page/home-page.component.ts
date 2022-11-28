@@ -13,7 +13,8 @@ export class HomePageComponent implements OnInit {
   private _saved: boolean = false;
   
   constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) { }
-
+  total: number = this.budgetCalculateService.showTotalPrice
+  
   initForm() {
     this.myForm = this.fb.group({
       webPage: [false, Validators.required],

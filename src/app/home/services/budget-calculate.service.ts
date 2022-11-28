@@ -17,6 +17,7 @@ export class BudgetCalculateService {
     this._totalPrice = 0
   }
   
+  public get showTotalPrice(): number { return this._totalPrice }
   public get showBudgetList(): Budget[] { return budgetList }
   
   

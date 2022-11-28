@@ -27,6 +27,8 @@
                     <hr>
                 </div>
                 <div class="list-group-item text-center container">
+                    <h3>Preu total: {{total}}€</h3>
+                    <hr>
                     <div *ngIf="!saved">
                         <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid" (click)="change()">Enmagatzema</button>
                         <button mat-icon-button type="button" [disabled]="myForm.invalid">
