@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
 import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@angular/forms';
 
@@ -7,14 +7,14 @@ import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@ang
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
 
   myForm!: FormGroup
-  change: boolean
+  private _change: boolean
 
   constructor( private fb: FormBuilder, private budgetCalculateService: BudgetCalculateService ) {
     this.initForm()
-    this.change = false
+    this._change = false
   }
   total: number = this.budgetCalculateService.showTotalPrice
   
@@ -32,29 +32,20 @@ export class HomePageComponent implements OnInit {
   }
   
   
-  get optionsDisplay(): boolean {
-    return this.myForm.get('webPage')!.value
-  }
+  get optionsDisplay(): boolean { return this.myForm.get('webPage')!.value }
+  get showChange(): boolean { return this._change }
 
-  get showform(): FormGroup {
-    return this.myForm as FormGroup
-  }
-  get showOptions(): FormGroup {
-    return this.myForm.get('options') as FormGroup
-  }
-
-  // public get saved(): boolean {  return this.saved }
-  // public change(save: boolean): void { save = !save }
-  // public change(): void { this.saved = !this.saved }
+  get showform(): FormGroup { return this.myForm as FormGroup }
+  get showOptions(): FormGroup { return this.myForm.get('options') as FormGroup }
   
   onSubmit() {
     this.budgetCalculateService.saveBudget(this.myForm.value)
-    this.budgetCalculateService.change = !this.budgetCalculateService.change
+    this.onChange(this._change)
     this.initForm()
   }
-  
-  
-  ngOnInit(): void {
-  }
 
+  calculateTotalPrice = this.budgetCalculateService.calculateTotalPrice
+  showServices = this.budgetCalculateService.showServices
+
+  onChange(change: boolean): void { this._change = !change }
 }

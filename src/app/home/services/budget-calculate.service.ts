@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
-import servicesData from '../../../assets/data/services.json';
+import servicesData from '../../../assets/data/servicesWeb.json';
 import { Budget } from '../interfaces/Budget';
 import { ClientRegistration } from '../interfaces/ClientRegistration';
 import { BudgetClient } from '../interfaces/BudgetClient';
+import { ServiceWeb } from '../interfaces/ServiceWeb';
 
 const budgetList: BudgetClient[] = []
 @Injectable({
@@ -12,7 +13,7 @@ const budgetList: BudgetClient[] = []
 })
 export class BudgetCalculateService {
 
-  private _services = servicesData
+  private _services: ServiceWeb[] = servicesData
   private _totalPrice: number
   private _budget!: Budget
   change: boolean = false
@@ -24,6 +25,7 @@ export class BudgetCalculateService {
   
   public get showTotalPrice(): number { return this._totalPrice }
   public get showBudgetClientList(): BudgetClient[] { return budgetList }
+  public get showServices() { return this._services }
   
 
 
@@ -31,17 +33,25 @@ export class BudgetCalculateService {
     const valid = Object.values(control.value).find(e => e === true)
     return valid || 'Invalid'
   }
-
+  
   public saveBudget(formJson: Budget) { this._budget = {...formJson} }
+  
+  public calculateTotalPrice(form: FormGroup, services: ServiceWeb[]): void {
+    console.log(services);
 
-  public calculateTotalPrice(form: FormGroup): void {
-    this._services.forEach(({id, price}) => {
-      // const name = Object.values(id)
+    for (const key in this._services) {
+      console.log("🚀 ~ file: budget-calculate.service.ts ~ line 41 ~ BudgetCalculateService ~ calculateTotalPrice ~ form.hasOwnProperty.call(this._services, key)", key)
+      if (form.hasOwnProperty.call(this._services, key)) {
+        console.log("🚀 ~ file: budget-calculate.service.ts ~ line 41 ~ BudgetCalculateService ~ calculateTotalPrice ~ form.hasOwnProperty.call(this._services, key)", form.hasOwnProperty.call(this._services, key))
+        const element = this._services[key];
+        
+      }
+    }
+/*     this._services.forEach(({id, price}) => {
       if (form.get(id)!.value === true) this._totalPrice += price!
       if (form.get('webPage')!.value === true) {
-        // form.get('options')
       }
-    })
+    }) */
   }
 
   public saveAllBudgetClient(formJson: ClientRegistration) {

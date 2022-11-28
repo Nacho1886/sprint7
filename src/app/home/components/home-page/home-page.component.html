@@ -29,13 +29,13 @@
                 <div class="list-group-item text-center container">
                     <h3>Preu total: {{total}}€</h3>
                     <hr>
-                    <div *ngIf="!change">
-                        <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid">Enmagatzema</button>
+                    <div *ngIf="!showChange">
+                        <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid" (pointermove)="calculateTotalPrice(myForm, showServices)">Enmagatzema</button>
                         <button mat-icon-button type="button" [disabled]="myForm.invalid">
                             <mat-icon>open_in_new</mat-icon>
                         </button>
                     </div>
-                    <app-client-names [change]="change" *ngIf="change"></app-client-names>
+                    <app-client-names [change]="showChange" (backChange)="onChange($event)" *ngIf="showChange"></app-client-names>
                 </div>
             </form>
             <button class="btn btn-outline-danger col-12 mt-2" routerLink="">Torna enrere</button>
