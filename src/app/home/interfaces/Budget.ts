@@ -1,6 +1,8 @@
 export interface Options {
     pages: number, 
-    languages: number
+    languages: number,
+
+    [key: string]: any
 }
 
 export interface Budget { 
@@ -9,6 +11,6 @@ export interface Budget {
     adsCampaign: boolean, 
     options: Options,
     
-    [key: string]: any;
+    [key: string]: any
 }
 
