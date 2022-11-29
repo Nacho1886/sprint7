@@ -1,8 +1,8 @@
 <div class="container-fluid text-center">
     <h5 class="pt-3">Pressupostos anteriors</h5>
     <hr class="pb-4">
-    <!-- <div *ngFor="let budgetClient of budgetArrayList"> -->
-    <div >
+    <div *ngFor="let budgetClient of budgetArrayList">
+    <!-- <div *ngIf="budgetClient"> -->
         <p>{{budgetClient.clientRegistration.name}} {{budgetClient.clientRegistration.client}} {{budgetClient.date.toISOString()}}</p>
         <p>{{budgetClient.service.webPage}} {{budgetClient.service.seoCampaign}} {{budgetClient.service.adsCampaign}}</p>
         <p>{{budgetClient.service.options.pages}} {{budgetClient.service.options.languages}}</p>
