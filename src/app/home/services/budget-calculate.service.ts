@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 import servicesData from '../../../assets/data/servicesWeb.json';
 import { Budget } from '../interfaces/Budget';
 import { ClientRegistration } from '../interfaces/ClientRegistration';
 import { BudgetClient } from '../interfaces/BudgetClient';
 import { ServiceWeb } from '../interfaces/ServiceWeb';
-
-/* interface IStringIndex {
-  propertyA: string;
-  propertyB: string;
-  [key: string]: any;
-} */
 
 const budgetList: BudgetClient[] = []
 @Injectable({
@@ -63,6 +57,8 @@ export class BudgetCalculateService {
       price: this.calculateTotalPrice(this.showBudget, this.showServices),
       date: new Date()
     }
+    localStorage.setItem('Presupuesto cliente', JSON.stringify(completBudget))
+
     budgetList.push({ ...completBudget })
   }
 
