@@ -14,7 +14,7 @@ export class SidebarComponent {
   
   constructor( private budgetCalculateService: BudgetCalculateService ) { 
     // this.budgetClient = JSON.parse(localStorage.getItem('Presupuesto cliente')!)
-    // this.budgetArrayList.push(JSON.parse(localStorage.getItem('Presupuesto cliente')!)
+    this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
   }
   
 

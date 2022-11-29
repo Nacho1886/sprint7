@@ -7,20 +7,22 @@ import { ClientRegistration } from '../interfaces/ClientRegistration';
 import { BudgetClient } from '../interfaces/BudgetClient';
 import { ServiceWeb } from '../interfaces/ServiceWeb';
 
-const budgetList: BudgetClient[] = []
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetCalculateService {
+  private _budgetList: BudgetClient[]
 
   private _services: ServiceWeb[] = servicesData
   private _budget!: Budget
   change: boolean = false
 
 
-  constructor() { }
+  constructor() {
+    this._budgetList = JSON.parse(localStorage.getItem('Presupuesto cliente')!) ?? []
+  }
 
-  public get showBudgetClientList(): BudgetClient[] { return budgetList }
+  public get showBudgetClientList(): BudgetClient[] { return this._budgetList }
   public get showBudget(): Budget { return this._budget }
   public get showServices() { return this._services }
 
@@ -45,7 +47,6 @@ export class BudgetCalculateService {
         })
       }
     }
-    console.log("🚀 ~ file: budget-calculate.service.ts ~ line 56 ~ BudgetCalculateService ~ calculateTotalPrice ~ total", total)
     return total
   }
   
@@ -55,11 +56,12 @@ export class BudgetCalculateService {
       clientRegistration: formJson,
       service: this._budget,
       price: this.calculateTotalPrice(this.showBudget, this.showServices),
-      date: new Date()
+      date: new Date().toLocaleDateString()
     }
-    localStorage.setItem('Presupuesto cliente', JSON.stringify(completBudget))
+    
+    this._budgetList.push({ ...completBudget })
+    localStorage.setItem('Presupuesto cliente', JSON.stringify(this._budgetList))
 
-    budgetList.push({ ...completBudget })
   }
 
 }

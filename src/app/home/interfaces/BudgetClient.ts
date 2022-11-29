@@ -5,5 +5,5 @@ export interface BudgetClient {
     clientRegistration: ClientRegistration;
     service: Budget;
     price: number;
-    date: Date;
+    date: string;
 }
