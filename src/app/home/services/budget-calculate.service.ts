@@ -15,7 +15,6 @@ export class BudgetCalculateService {
 
   private _services: ServiceWeb[] = servicesData
   private _budget!: Budget
-  change: boolean = false
 
 
   constructor() {
