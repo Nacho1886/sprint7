@@ -48,12 +48,14 @@
                     </app-client-names>
                 </div>
             </form>
-            <button class="btn btn-outline-danger col-12 mt-2" routerLink="">Torna enrere</button>
-        </div>
-        <div class="col-12 col-md-4 p-0">
-            <app-sidebar-controller></app-sidebar-controller>
-            <div>{{myForm.value | json }}</div>
-            <div>{{myForm.valid | json }}</div>
+            <div class="row pt-4 justify-content-between">
+                <app-sidebar-controller class="col-12 col-lg-6 mt-2"></app-sidebar-controller>
+                <div class=" col-12 col-lg-6 mt-2 d-flex justify-content-center">
+                    <button mat-raised-button color="accent" class="w-75" routerLink="">Torna enrere</button>
+                </div>
+                <div>{{myForm.value | json }}</div>
+                <div>{{myForm.valid | json }}</div>
+            </div>
         </div>
     </div>
 </div>

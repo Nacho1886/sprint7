@@ -9,14 +9,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angu
 export class HelpModalComponent {
   @Input() data!: string
   dialogConfig = new MatDialogConfig();
-  constructor(private dialog: MatDialog) {
-    this.dialogConfig = {
-      data: this.data,
-      width: '550px',
-      height: '100%',
-      position: { top: '0', right: '0', bottom: '0' }
-    }
-  }
+  constructor(private dialog: MatDialog) { }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     
     this.dialog.open(ModalDialog, { 

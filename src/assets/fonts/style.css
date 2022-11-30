@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Cartograph CF';
+    src: local('Cartograph CF Regular'), local('Cartograph-CF-Regular'),
+        url('../../assets/fonts/CartographCF-Regular.woff2') format('woff2'),
+        url('../../assets/fonts/CartographCF-Regular.woff') format('woff'),
+        url('../../assets/fonts/CartographCF-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}

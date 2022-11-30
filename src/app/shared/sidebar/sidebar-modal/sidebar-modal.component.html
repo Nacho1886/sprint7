@@ -1,1 +1,29 @@
-<p>sidebar-modal works!</p>
+<div class="container-fluid text-center">
+    <div class="d-flex justify-content-start">
+        <button mat-dialog-close type="button" class="btn-close btn-close-white"></button>
+    </div>
+    <h5 mat-dialog-title class="pt-3">Pressupostos anteriors</h5>
+
+    <button mat-button [matMenuTriggerFor]="animals">Ordena</button>
+    <mat-menu #animals="matMenu">
+        <button mat-menu-item>Reinicia l'ordre</button>
+        <button mat-menu-item>Per data</button>
+        <button mat-menu-item [matMenuTriggerFor]="alphabet">Alfabèticament</button>
+    </mat-menu>
+
+    <mat-menu #alphabet="matMenu">
+        <button mat-menu-item>Per nom</button>
+        <button mat-menu-item>Per client</button>
+    </mat-menu>
+
+    <hr class="pb-4">
+    <div mat-dialog-content class="budgetClass" *ngFor="let budgetClient of budgetArrayList">
+        <hr>
+        <p>{{budgetClient.clientRegistration.name}} {{budgetClient.clientRegistration.client}} {{budgetClient.date}}</p>
+        <p>{{budgetClient.service.webPage}} {{budgetClient.service.seoCampaign}} {{budgetClient.service.adsCampaign}}
+        </p>
+        <p>{{budgetClient.service.options.pages}} {{budgetClient.service.options.languages}}</p>
+        <p>{{budgetClient.price}}</p>
+        <hr>
+    </div>
+</div>
