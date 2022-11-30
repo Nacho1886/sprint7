@@ -4,8 +4,8 @@
     </div>
     <h5 mat-dialog-title class="pt-3">Pressupostos anteriors</h5>
 
-    <button mat-button [matMenuTriggerFor]="animals">Ordena</button>
-    <mat-menu #animals="matMenu">
+    <button mat-stroked-button cdkFocusInitial class="buttonOrder" [matMenuTriggerFor]="orderMenu">Ordena</button>
+    <mat-menu #orderMenu="matMenu">
         <button mat-menu-item>Reinicia l'ordre</button>
         <button mat-menu-item>Per data</button>
         <button mat-menu-item [matMenuTriggerFor]="alphabet">Alfabèticament</button>
@@ -17,13 +17,21 @@
     </mat-menu>
 
     <hr class="pb-4">
-    <div mat-dialog-content class="budgetClass" *ngFor="let budgetClient of budgetArrayList">
-        <hr>
-        <p>{{budgetClient.clientRegistration.name}} {{budgetClient.clientRegistration.client}} {{budgetClient.date}}</p>
-        <p>{{budgetClient.service.webPage}} {{budgetClient.service.seoCampaign}} {{budgetClient.service.adsCampaign}}
-        </p>
-        <p>{{budgetClient.service.options.pages}} {{budgetClient.service.options.languages}}</p>
-        <p>{{budgetClient.price}}</p>
-        <hr>
+    <div class="container d-flex justify-content-center">
+        <div class="row justify-content-center">
+            <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of budgetArrayList">
+                <hr>
+                <p>Nom de pressupost: {{budgetClient.clientRegistration.name}}</p>
+                <p>Nom de client: {{budgetClient.clientRegistration.client}}</p>
+                <p>Data: {{budgetClient.date}}</p>
+                <div *ngIf="budgetClient.service.webPage">
+                    <p>Una pàgina web amb {{budgetClient.service.options.pages}} pàgines i {{budgetClient.service.options.languages}} llenguatges</p>
+                </div>
+                <p *ngIf="budgetClient.service.seoCampaign">Campanya SEO contractada</p> 
+                <p *ngIf="budgetClient.service.adsCampaign">Campanya de publicitat contractada</p>
+                <p>Preu total: {{budgetClient.price}}€</p>
+                <hr>
+            </div>
+        </div>
     </div>
 </div>

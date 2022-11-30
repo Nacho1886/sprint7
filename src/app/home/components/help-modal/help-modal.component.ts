@@ -10,14 +10,11 @@ export class HelpModalComponent {
   @Input() data!: string
   dialogConfig = new MatDialogConfig();
   constructor(private dialog: MatDialog) { }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    
-    this.dialog.open(ModalDialog, { 
+  openDialog(): void {
+
+    this.dialog.open(ModalDialog, {
       data: this.data,
       width: '550px'
-      // animation:{to:"aside"}
-      // enterAnimationDuration,
-      // exitAnimationDuration: exitAnimationDuration
     })
   }
 
@@ -29,6 +26,8 @@ export class HelpModalComponent {
   templateUrl: './modal-dialog.html'
 })
 export class ModalDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string, 
-  public dialogRef: MatDialogRef<ModalDialog>) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    public dialogRef: MatDialogRef<ModalDialog>
+  ) { }
 }
