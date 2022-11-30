@@ -4,24 +4,32 @@
             <form class="list-group" [formGroup]="myForm" (ngSubmit)="onSubmit()">
                 <div class="list-group-item text-center container justify-content-center">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" formControlName="webPage" type="checkbox" role="switch" name="webPage" id="webPage">
+                        <input class="form-check-input" formControlName="webPage" type="checkbox" role="switch"
+                            name="webPage" id="webPage">
                         <label class="form-check-label" for="webPage">Una pàgina web (500 €) </label>
                     </div>
                     <hr>
-                    <div *ngIf="optionsDisplay">
-                        <app-panel [options]="showOptions"></app-panel>
+                    <div class="row" *ngIf="optionsDisplay">
+                        <div class="col-1"></div>
+                        <app-panel class="col-10" [options]="showOptions"></app-panel>
+                        <div class="col-1 d-flex flex-column justify-content-around">
+                            <app-help-modal [data]="'pàgines'" class="mb-2"></app-help-modal>
+                            <app-help-modal [data]="'llenguatges'" class="mBottom"></app-help-modal>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" formControlName="seoCampaign" type="checkbox" role="switch" name="seoCampaign" id="seoCampaign">
+                        <input class="form-check-input" formControlName="seoCampaign" type="checkbox" role="switch"
+                            name="seoCampaign" id="seoCampaign">
                         <label class="form-check-label" for="seoCampaign">Una campanya SEO (300 €) </label>
                     </div>
                     <hr>
                 </div>
                 <div class="list-group-item text-center container">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" formControlName="adsCampaign" type="checkbox" role="switch" name="adsCampaign" id="adsCampaign">
+                        <input class="form-check-input" formControlName="adsCampaign" type="checkbox" role="switch"
+                            name="adsCampaign" id="adsCampaign">
                         <label class="form-check-label" for="adsCampaign">Una campanya de publicitat (200 €) </label>
                     </div>
                     <hr>
@@ -30,12 +38,14 @@
                     <h3>Preu total: {{calculateTotalPrice(myForm.value, showServices)}}€</h3>
                     <hr>
                     <div *ngIf="!showChange">
-                        <button class="btn btn-outline-primary" type="submit" [disabled]="myForm.invalid">Enmagatzema</button>
+                        <button class="btn btn-outline-primary" type="submit"
+                            [disabled]="myForm.invalid">Enmagatzema</button>
                         <button mat-icon-button type="button" [disabled]="myForm.invalid">
                             <mat-icon>open_in_new</mat-icon>
                         </button>
                     </div>
-                    <app-client-names [change]="showChange" (backChange)="onChange($event)" *ngIf="showChange"></app-client-names>
+                    <app-client-names [change]="showChange" (backChange)="onChange($event)" *ngIf="showChange">
+                    </app-client-names>
                 </div>
             </form>
             <button class="btn btn-outline-danger col-12 mt-2" routerLink="">Torna enrere</button>

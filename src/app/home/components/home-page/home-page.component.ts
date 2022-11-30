@@ -47,4 +47,6 @@ export class HomePageComponent {
   showServices = this.budgetCalculateService.showServices
 
   onChange(change: boolean): void { this._change = !change }
+
+  showHelp(value: string) { return value }
 }
