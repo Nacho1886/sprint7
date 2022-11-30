@@ -1,5 +1,5 @@
 import { Component, Inject, Input } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-help-modal',
@@ -8,16 +8,23 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dial
 })
 export class HelpModalComponent {
   @Input() data!: string
-
-  constructor(private dialog: MatDialog) { }
+  dialogConfig = new MatDialogConfig();
+  constructor(private dialog: MatDialog) {
+    this.dialogConfig = {
+      data: this.data,
+      width: '550px',
+      height: '100%',
+      position: { top: '0', right: '0', bottom: '0' }
+    }
+  }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     
     this.dialog.open(ModalDialog, { 
       data: this.data,
-      width: '550px',
-      /* animation:{to:"aside"}
-      enterAnimationDuration,
-      exitAnimationDuration */
+      width: '550px'
+      // animation:{to:"aside"}
+      // enterAnimationDuration,
+      // exitAnimationDuration: exitAnimationDuration
     })
   }
 
