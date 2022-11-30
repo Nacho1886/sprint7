@@ -8,12 +8,9 @@ import { BudgetClient } from '../../home/interfaces/BudgetClient';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  // budgetClient: BudgetClient
-  // budgetArrayList: BudgetClient[] = this.budgetCalculateService.showBudgetClientList
   budgetArrayList!: BudgetClient[]
   
-  constructor( private budgetCalculateService: BudgetCalculateService ) { 
-    // this.budgetClient = JSON.parse(localStorage.getItem('Presupuesto cliente')!)
+  constructor( private budgetCalculateService: BudgetCalculateService ) {
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
   }
   
