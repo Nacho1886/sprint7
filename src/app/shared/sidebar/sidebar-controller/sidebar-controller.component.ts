@@ -5,10 +5,7 @@ import { SidebarModalComponent } from '../sidebar-modal/sidebar-modal.component'
 @Component({
   selector: 'app-sidebar-controller',
   templateUrl: './sidebar-controller.component.html',
-  styleUrls: [
-    './sidebar-controller.component.scss',
-  '../../../../assets/fonts/style.css'
-]
+  styleUrls: ['./sidebar-controller.component.scss']
 })
 export class SidebarControllerComponent {
   dialogConfig = new MatDialogConfig();
