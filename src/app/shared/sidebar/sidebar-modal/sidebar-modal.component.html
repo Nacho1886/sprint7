@@ -1,35 +1,41 @@
-<div class="container-fluid text-center">
+<div class="container-fluid text-center colorWhite">
     <div class="d-flex justify-content-start">
         <button mat-dialog-close type="button" class="btn-close btn-close-white"></button>
     </div>
     <h5 mat-dialog-title class="pt-3">Pressupostos anteriors</h5>
-
-    <button mat-stroked-button cdkFocusInitial class="buttonOrder" [matMenuTriggerFor]="orderMenu">Ordena</button>
-    <mat-menu #orderMenu="matMenu">
-        <button mat-menu-item>Reinicia l'ordre</button>
-        <button mat-menu-item>Per data</button>
-        <button mat-menu-item [matMenuTriggerFor]="alphabet">Alfabèticament</button>
-    </mat-menu>
-
-    <mat-menu #alphabet="matMenu">
-        <button mat-menu-item>Per nom</button>
-        <button mat-menu-item>Per client</button>
-    </mat-menu>
+    
+    <form class="row justify-content-around">
+        <mat-form-field  [color]="options.value.color" class="col-10 col-md-6 w-75 colorWhite">
+            <input matInput formControlName="fontSize" placeholder="Cerca per nom">
+        </mat-form-field>
+        <div class="col-8 col-md-3 d-flex flex-column justify-content-center">
+            <button type="button" mat-stroked-button cdkFocusInitial class="buttonOrder" [matMenuTriggerFor]="orderMenu">Ordena</button>
+        </div>
+        <mat-menu #orderMenu="matMenu">
+            <button type="button" mat-menu-item>Reinicia l'ordre</button>
+            <button type="button" mat-menu-item>Per data</button>
+            <button type="button" mat-menu-item [matMenuTriggerFor]="alphabet">Alfabèticament</button>
+        </mat-menu>
+        <mat-menu #alphabet="matMenu">
+            <button type="button" mat-menu-item>Per nom</button>
+            <button type="button" mat-menu-item>Per client</button>
+        </mat-menu>
+    </form>
 
     <hr class="pb-4">
     <div class="container d-flex justify-content-center">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center hoverControl">
             <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of budgetArrayList">
                 <hr>
-                <p>Nom de pressupost: {{budgetClient.clientRegistration.name}}</p>
-                <p>Nom de client: {{budgetClient.clientRegistration.client}}</p>
-                <p>Data: {{budgetClient.date}}</p>
+                <p><strong>Nom de pressupost:</strong> {{budgetClient.clientRegistration.name}}</p>
+                <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client}}</p>
+                <p><strong>Data:</strong> {{budgetClient.date}}</p>
                 <div *ngIf="budgetClient.service.webPage">
                     <p>Una pàgina web amb {{budgetClient.service.options.pages}} pàgines i {{budgetClient.service.options.languages}} llenguatges</p>
                 </div>
                 <p *ngIf="budgetClient.service.seoCampaign">Campanya SEO contractada</p> 
                 <p *ngIf="budgetClient.service.adsCampaign">Campanya de publicitat contractada</p>
-                <p>Preu total: {{budgetClient.price}}€</p>
+                <p><strong>Preu total:</strong> {{budgetClient.price}}€</p>
                 <hr>
             </div>
         </div>

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
-import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 import { SidebarModalComponent } from '../sidebar-modal/sidebar-modal.component';
 
 @Component({
@@ -15,10 +13,9 @@ import { SidebarModalComponent } from '../sidebar-modal/sidebar-modal.component'
 export class SidebarControllerComponent {
   dialogConfig = new MatDialogConfig();
 
-  constructor( private dialog: MatDialog, private budgetCalculateService: BudgetCalculateService ) {
-    // debugger
+  constructor( private dialog: MatDialog ) {
     this.dialogConfig = {
-      width: '300px',
+      width: '400px',
       height: '100%',
       position: { top: '0', right: '0', bottom: '0' },
       panelClass: 'custom-modalbox'
