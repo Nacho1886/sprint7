@@ -1,3 +1,4 @@
 <div class="d-flex justify-content-center">
-    <button mat-raised-button color="warn" class="w-75" (click)="openDialog()">Mostrar pressupostos</button>
+    <button mat-raised-button matBadge="(arrayClients())" [matBadgeHidden]="hiddenBadge" matBadgePosition="after"
+    color="warn" class="w-75" (click)="openDialog()"><mat-icon [matBadge]="ArrayClients.length" [matBadgeHidden]="hiddenBadge" matBadgePosition="after"></mat-icon>Mostrar pressupostos</button>
 </div>
