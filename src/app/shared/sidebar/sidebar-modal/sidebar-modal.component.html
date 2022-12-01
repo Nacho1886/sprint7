@@ -1,15 +1,21 @@
 <div class="container-fluid text-center colorWhite">
     <div class="d-flex justify-content-start">
-        <button mat-dialog-close type="button" class="btn-close btn-close-white"></button>
+        <button mat-dialog-close type="button" class="btn-close btn-close-white mt-3 ms-1"></button>
     </div>
     <h5 mat-dialog-title class="pt-3">Pressupostos anteriors</h5>
-    
-    <form  class="row justify-content-around">
-        <mat-form-field  [color]="options.value.color" class="col-10 col-md-6 w-75 colorWhite">
-            <input matInput formControlName="fontSize" placeholder="Cerca per nom">
+
+    <form class="row justify-content-around">
+        <mat-form-field class="col-10 col-md-6 w-75 colorWhite">
+            <input matInput [formControl]="myControl" placeholder="Cerca per nom">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
         <div class="col-8 col-md-3 d-flex flex-column justify-content-center">
-            <button type="button" mat-stroked-button cdkFocusInitial class="buttonOrder" [matMenuTriggerFor]="orderMenu">Ordena</button>
+            <button type="button" mat-stroked-button cdkFocusInitial class="buttonOrder"
+                [matMenuTriggerFor]="orderMenu">Ordena</button>
         </div>
         <mat-menu #orderMenu="matMenu">
             <button type="button" mat-menu-item>Reinicia l'ordre</button>
@@ -31,9 +37,10 @@
                 <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client}}</p>
                 <p><strong>Data:</strong> {{budgetClient.date}}</p>
                 <div *ngIf="budgetClient.service.webPage">
-                    <p>Una pàgina web amb {{budgetClient.service.options.pages}} pàgines i {{budgetClient.service.options.languages}} llenguatges</p>
+                    <p>Una pàgina web amb {{budgetClient.service.options.pages}} pàgines i
+                        {{budgetClient.service.options.languages}} llenguatges</p>
                 </div>
-                <p *ngIf="budgetClient.service.seoCampaign">Campanya SEO contractada</p> 
+                <p *ngIf="budgetClient.service.seoCampaign">Campanya SEO contractada</p>
                 <p *ngIf="budgetClient.service.adsCampaign">Campanya de publicitat contractada</p>
                 <p><strong>Preu total:</strong> {{budgetClient.price}}€</p>
                 <hr>

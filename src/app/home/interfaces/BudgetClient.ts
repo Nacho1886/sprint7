@@ -2,8 +2,10 @@ import { Budget } from "./Budget";
 import { ClientRegistration } from './ClientRegistration';
 
 export interface BudgetClient {
-    clientRegistration: ClientRegistration;
-    service: Budget;
-    price: number;
-    date: string;
+    clientRegistration: ClientRegistration,
+    service: Budget,
+    price: number,
+    date: string,
+
+    [key: string]: any
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { SidebarModalComponent } from './sidebar/sidebar-modal/sidebar-modal.component';
 import { SidebarControllerComponent } from './sidebar/sidebar-controller/sidebar-controller.component';
 
@@ -10,7 +12,8 @@ import { SidebarControllerComponent } from './sidebar/sidebar-controller/sidebar
   declarations: [SidebarControllerComponent, SidebarModalComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     SidebarControllerComponent
