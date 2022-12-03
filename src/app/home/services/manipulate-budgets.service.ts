@@ -10,22 +10,35 @@ export class ManipulateBudgetsService {
 
   transformObjectToArray(object: object): any[] {
     const newArray: any[] = []
-    for (const value of Object.values(object)) {
+    for (let value of Object.values(object)) {
+      if (typeof value === typeof Object()) {
+        value = Object.values(value)
+      }
       newArray.push(value)
     }
     return newArray
   }
 
-  public filter(value: string, arrayClients: BudgetClient[]): string[] {
+  transformToSimpleArray(value: object): any[] {
+    let temporalParameter: any[] = Object.values(value)
+    while (temporalParameter.find(e => typeof e === typeof Object())) {
+      temporalParameter = this.transformObjectToArray(temporalParameter).flat()
+    }
+    return temporalParameter
+  }
+
+  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[]): string[] {
     const research: string[] = []
     const filterValue = value.toLowerCase()
 
     arrayClients.forEach(budget => {
-      for (const data of Object.values(budget)) {
-        if (typeof data === typeof Object()) {}
-        const stringValue = String(budget[data])
-        if (stringValue.toLowerCase().includes(filterValue)) research.push(stringValue)
-      }
+      const fullArray = this.transformToSimpleArray({...budget})
+      fullArray.forEach(e => {
+        if (typeof e === typeof Boolean()) return
+        if (String(e).toLowerCase().includes(filterValue)) {
+          if (!research.includes(e)) research.push(e)
+        }
+      })
     })
     return research
   }

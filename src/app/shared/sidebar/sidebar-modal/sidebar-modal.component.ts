@@ -43,10 +43,7 @@ export class SidebarModalComponent implements OnInit {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
-        const pepe = this.manipulateBudgetsService.filter(value || '', this.budgetArrayList)
-        console.log("🚀 ~ file: sidebar-modal.component.ts:56 ~ SidebarModalComponent ~ ngOnInit ~ value", value)
-        console.log("🚀 ~ file: sidebar-modal.component.ts:56 ~ SidebarModalComponent ~ ngOnInit ~ pepe", pepe)
-        return this.manipulateBudgetsService.filter(value || '', this.budgetArrayList)}),
+        return this.manipulateBudgetsService.filterAutocompleteClients(value || '', this.budgetArrayList)}),
     );
   }
 }

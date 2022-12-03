@@ -5,8 +5,8 @@
     <h5 mat-dialog-title class="pt-3">Pressupostos anteriors</h5>
 
     <form class="row justify-content-around">
-        <mat-form-field class="col-10 col-md-6 w-75 colorWhite">
-            <input matInput [formControl]="myControl" placeholder="Cerca per nom">
+        <mat-form-field class="col-10 col-md-6 w-75 colorWhite" appearance="fill">
+            <input matInput [formControl]="myControl" [matAutocomplete]="auto" placeholder="Cerca per nom">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                     {{option}}
