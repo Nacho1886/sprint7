@@ -37,8 +37,17 @@
                 <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client}}</p>
                 <p><strong>Data:</strong> {{budgetClient.date}}</p>
                 <div *ngIf="budgetClient.service.webPage">
-                    <p>Una pàgina web amb {{budgetClient.service.options.pages}} pàgines i
-                        {{budgetClient.service.options.languages}} llenguatges</p>
+                    <p>Una pàgina web amb {{budgetClient.service.options.pages}} 
+                        <ng-container *ngIf="budgetClient.service.options.pages === 1; else pluralPages">
+                            pàgina
+                        </ng-container>
+                        <ng-template #pluralPages> pàgines </ng-template>
+                        i {{budgetClient.service.options.languages}}
+                        <ng-container *ngIf="budgetClient.service.options.languages === 1; else pluralLanguages">
+                            llenguatge
+                        </ng-container>
+                        <ng-template #pluralLanguages> llenguatges </ng-template>
+                    </p>
                 </div>
                 <p *ngIf="budgetClient.service.seoCampaign">Campanya SEO contractada</p>
                 <p *ngIf="budgetClient.service.adsCampaign">Campanya de publicitat contractada</p>
