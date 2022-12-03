@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BudgetClient } from '../interfaces/BudgetClient';
+import { BudgetCalculateService } from './budget-calculate.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManipulateBudgetsService {
-
-  constructor() { }
+  private _manipulatedArray: BudgetClient[] = []
+  constructor( private budgetCalculateService: BudgetCalculateService ) { }
 
   transformObjectToArray(object: object): any[] {
     const newArray: any[] = []
@@ -28,18 +29,31 @@ export class ManipulateBudgetsService {
   }
 
   public filterAutocompleteClients(value: string, arrayClients: BudgetClient[]): string[] {
+    this._manipulatedArray = []
     const research: string[] = []
-    const filterValue = value.toLowerCase()
-
+    const filterValue = String(value).toLowerCase()
+    
+    if (value === '') this._manipulatedArray = this.budgetCalculateService.showBudgetClientList
+    
     arrayClients.forEach(budget => {
       const fullArray = this.transformToSimpleArray({...budget})
       fullArray.forEach(e => {
         if (typeof e === typeof Boolean()) return
         if (String(e).toLowerCase().includes(filterValue)) {
+          
           if (!research.includes(e)) research.push(e)
+          
+          if (!this._manipulatedArray.includes(budget)) 
+          this._manipulatedArray.push(budget)
         }
       })
     })
+    // console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 33 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ this._manipulatedArray", this._manipulatedArray)
+    
     return research
   }
+
+
+  public get showManipulatedArray() { return this._manipulatedArray }
+
 }

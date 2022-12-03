@@ -15,7 +15,9 @@ import { ManipulateBudgetsService } from '../../../home/services/manipulate-budg
 export class SidebarModalComponent implements OnInit {
   budgetArrayList!: BudgetClient[]
   options: FormGroup
-  filteredOptions!: Observable<string[]>;
+  manipulateBudgetArrayList!: BudgetClient[]
+  // manipulateBudgetArrayList!: Observable<BudgetClient[]>
+  filteredOptions!: Observable<string[]>
 
   constructor(
     public dialogRef: MatDialogRef<SidebarModalComponent>,
@@ -25,6 +27,7 @@ export class SidebarModalComponent implements OnInit {
   ) {
 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
+    this.manipulateBudgetArrayList = this.manipulateBudgetsService.showManipulatedArray
 
     this.options = this.fb.group({
       color: 'primary',
@@ -41,9 +44,12 @@ export class SidebarModalComponent implements OnInit {
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
+      startWith(),
       map(value => {
-        return this.manipulateBudgetsService.filterAutocompleteClients(value || '', this.budgetArrayList)}),
-    );
+    console.log(this.manipulateBudgetArrayList);
+        
+    this.manipulateBudgetArrayList = this.manipulateBudgetsService.showManipulatedArray
+    return this.manipulateBudgetsService.filterAutocompleteClients(value || '', this.budgetArrayList)}),
+    )
   }
 }
