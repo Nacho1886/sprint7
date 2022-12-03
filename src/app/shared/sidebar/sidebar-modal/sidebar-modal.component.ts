@@ -5,6 +5,7 @@ import { map, Observable, startWith } from 'rxjs';
 
 import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
+import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
 
 @Component({
   selector: 'app-sidebar-modal',
@@ -19,7 +20,8 @@ export class SidebarModalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SidebarModalComponent>,
     private fb: FormBuilder,
-    private budgetCalculateService: BudgetCalculateService
+    private budgetCalculateService: BudgetCalculateService,
+    private manipulateBudgetsService: ManipulateBudgetsService
   ) {
 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
@@ -35,27 +37,16 @@ export class SidebarModalComponent implements OnInit {
 
 
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    const research: string[] = []
-
-    this.budgetArrayList.filter(budget => {
-      for (const data in budget) {
-        const stringValue = String(budget[data])
-        if (stringValue.toLowerCase().includes(filterValue)) research.push(stringValue)
-      }
-    })
-    return research
-  }
+  
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
-        const pepe = this._filter(value || '')
+        const pepe = this.manipulateBudgetsService.filter(value || '', this.budgetArrayList)
         console.log("🚀 ~ file: sidebar-modal.component.ts:56 ~ SidebarModalComponent ~ ngOnInit ~ value", value)
         console.log("🚀 ~ file: sidebar-modal.component.ts:56 ~ SidebarModalComponent ~ ngOnInit ~ pepe", pepe)
-        return this._filter(value || '')}),
+        return this.manipulateBudgetsService.filter(value || '', this.budgetArrayList)}),
     );
   }
 }
