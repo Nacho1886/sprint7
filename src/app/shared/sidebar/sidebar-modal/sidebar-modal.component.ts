@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { map, Observable, startWith } from 'rxjs';
 
@@ -13,9 +13,13 @@ import { ManipulateBudgetsService } from '../../../home/services/manipulate-budg
   styleUrls: ['./sidebar-modal.component.scss']
 })
 export class SidebarModalComponent implements OnInit {
-  budgetArrayList!: BudgetClient[]
-  options: FormGroup
-  manipulateBudgetArrayList!: BudgetClient[]
+  budgetArrayList: BudgetClient[]
+  manipulateBudgetArrayList: BudgetClient[]
+
+  myControl: FormControl
+
+  // options: FormGroup
+
   // manipulateBudgetArrayList!: Observable<BudgetClient[]>
   filteredOptions!: Observable<string[]>
 
@@ -29,17 +33,20 @@ export class SidebarModalComponent implements OnInit {
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
     this.manipulateBudgetArrayList = this.manipulateBudgetsService.showManipulatedArray
 
+    this.myControl = this.fb.control('');
+/* 
     this.options = this.fb.group({
       color: 'primary',
       fontSize: [16, Validators.min(10)]
-    });
+    }); */
   }
 
+/*   deleteBudge(i: number) {
+    this.budgetArrayList.splice(i, 1)
+    this.budgetCalculateService.localeStorageSave(this.budgetArrayList)
+  } */
 
-  myControl = this.fb.control('');
-
-
-
+  
   
 
   ngOnInit() {

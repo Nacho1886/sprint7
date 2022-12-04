@@ -49,6 +49,9 @@ export class BudgetCalculateService {
     return total
   }
   
+  public localeStorageSave(array: BudgetClient[]) {
+    localStorage.setItem('Presupuesto cliente', JSON.stringify(array))
+  }
 
   public saveAllBudgetClient(formJson: ClientRegistration) {
     const completBudget: BudgetClient = {
@@ -59,8 +62,7 @@ export class BudgetCalculateService {
     }
     
     this._budgetList.push({ ...completBudget })
-    localStorage.setItem('Presupuesto cliente', JSON.stringify(this._budgetList))
-
+    this.localeStorageSave(this._budgetList)
   }
 
 }

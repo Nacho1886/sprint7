@@ -5,11 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SidebarModalComponent } from './sidebar/sidebar-modal/sidebar-modal.component';
 import { SidebarControllerComponent } from './sidebar/sidebar-controller/sidebar-controller.component';
+import { ListContentComponent } from './sidebar/list-content/list-content.component';
 
 
 
 @NgModule({
-  declarations: [SidebarControllerComponent, SidebarModalComponent],
+  declarations: [
+    SidebarControllerComponent, 
+    SidebarModalComponent, 
+    ListContentComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,

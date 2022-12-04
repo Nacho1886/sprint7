@@ -7,9 +7,15 @@ import { BudgetCalculateService } from './budget-calculate.service';
 })
 export class ManipulateBudgetsService {
   private _manipulatedArray: BudgetClient[] = []
+
   constructor( private budgetCalculateService: BudgetCalculateService ) { }
 
-  transformObjectToArray(object: object): any[] {
+  public deleteBudge(i: number, array: BudgetClient[]) {
+    array.splice(i, 1)
+    this.budgetCalculateService.localeStorageSave(array)
+  }
+
+  public transformObjectToArray(object: object): any[] {
     const newArray: any[] = []
     for (let value of Object.values(object)) {
       if (typeof value === typeof Object()) {
@@ -20,7 +26,7 @@ export class ManipulateBudgetsService {
     return newArray
   }
 
-  transformToSimpleArray(value: object): any[] {
+  public transformToSimpleArray(value: object): any[] {
     let temporalParameter: any[] = Object.values(value)
     while (temporalParameter.find(e => typeof e === typeof Object())) {
       temporalParameter = this.transformObjectToArray(temporalParameter).flat()
@@ -48,8 +54,6 @@ export class ManipulateBudgetsService {
         }
       })
     })
-    // console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 33 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ this._manipulatedArray", this._manipulatedArray)
-    
     return research
   }
 

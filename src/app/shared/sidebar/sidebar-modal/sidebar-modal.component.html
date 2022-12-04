@@ -29,31 +29,7 @@
     </form>
 
     <hr class="pb-4">
-    <div class="container d-flex justify-content-center">
-        <div class="row justify-content-center hoverControl">
-            <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of manipulateBudgetArrayList">
-                <hr>
-                <p><strong>Nom de pressupost:</strong> {{budgetClient.clientRegistration.name}}</p>
-                <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client}}</p>
-                <p><strong>Data:</strong> {{budgetClient.date}}</p>
-                <div *ngIf="budgetClient.service.webPage">
-                    <p>Una pàgina web amb {{budgetClient.service.options.pages}} 
-                        <ng-container *ngIf="budgetClient.service.options.pages === 1; else pluralPages">
-                            pàgina
-                        </ng-container>
-                        <ng-template #pluralPages> pàgines </ng-template>
-                        i {{budgetClient.service.options.languages}}
-                        <ng-container *ngIf="budgetClient.service.options.languages === 1; else pluralLanguages">
-                            llenguatge
-                        </ng-container>
-                        <ng-template #pluralLanguages> llenguatges </ng-template>
-                    </p>
-                </div>
-                <p *ngIf="budgetClient.service.seoCampaign">Campanya SEO contractada</p>
-                <p *ngIf="budgetClient.service.adsCampaign">Campanya de publicitat contractada</p>
-                <p><strong>Preu total:</strong> {{budgetClient.price}}€</p>
-                <hr>
-            </div>
-        </div>
-    </div>
+    <!-- <div class="w-auto"> -->
+        <app-list-content></app-list-content>
+    <!-- </div> -->
 </div>
