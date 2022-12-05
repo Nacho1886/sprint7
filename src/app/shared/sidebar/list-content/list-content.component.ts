@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
 import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
@@ -10,17 +10,20 @@ import { BudgetCalculateService } from '../../../home/services/budget-calculate.
 })
 export class ListContentComponent {
 
-  budgetArrayList: BudgetClient[]
-  manipulateBudgetArrayList: BudgetClient[]
+  // budgetArrayList: BudgetClient[]
+  @Input('array') filteredArray!: BudgetClient[]
 
   constructor(
-    private budgetCalculateService: BudgetCalculateService,
+    // private budgetCalculateService: BudgetCalculateService,
     private manipulateBudgetsService: ManipulateBudgetsService
     ) { 
-    this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
-    this.manipulateBudgetArrayList = this.manipulateBudgetsService.showManipulatedArray
+    // this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
   }
 
   deleteBudge = this.manipulateBudgetsService.deleteBudge
+  onMouseT(){
+    console.log(this.filteredArray);
+    
+  }
 
 }

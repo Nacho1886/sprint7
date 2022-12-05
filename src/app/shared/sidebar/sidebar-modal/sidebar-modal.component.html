@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-start">
         <button mat-dialog-close type="button" class="btn-close btn-close-white mt-3 ms-1"></button>
     </div>
-    <h5 mat-dialog-title class="pt-3">Pressupostos anteriors</h5>
+    <h5 mat-dialog-title class="pt-3" (mouseenter)="onMouseT()">Pressupostos anteriors</h5>
 
     <form class="row justify-content-around">
         <mat-form-field class="col-10 col-md-6 w-75 colorWhite" appearance="fill">
@@ -29,7 +29,5 @@
     </form>
 
     <hr class="pb-4">
-    <!-- <div class="w-auto"> -->
-        <app-list-content></app-list-content>
-    <!-- </div> -->
+        <app-list-content [array]="manipulateBudgetArrayList"></app-list-content>
 </div>

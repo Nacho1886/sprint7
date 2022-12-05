@@ -6,58 +6,68 @@ import { BudgetCalculateService } from './budget-calculate.service';
   providedIn: 'root'
 })
 export class ManipulateBudgetsService {
-  private _manipulatedArray: BudgetClient[] = []
 
-  constructor( private budgetCalculateService: BudgetCalculateService ) { }
+  
+
+  constructor(private budgetCalculateService: BudgetCalculateService) { }
 
   public deleteBudge(i: number, array: BudgetClient[]) {
     array.splice(i, 1)
     this.budgetCalculateService.localeStorageSave(array)
   }
 
-  public transformObjectToArray(object: object): any[] {
-    const newArray: any[] = []
-    for (let value of Object.values(object)) {
-      if (typeof value === typeof Object()) {
-        value = Object.values(value)
+
+
+
+
+  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[], manipulatedArray: BudgetClient[], i: number): string[] {
+    console.log(i);
+    
+    const transformObjectToArray = (object: object): any[] => {
+      const newArray: any[] = []
+      for (let val of Object.values(object)) {
+        if (typeof val === typeof Object()) {
+          val = Object.values(val)
+        }
+        newArray.push(val)
       }
-      newArray.push(value)
+      return newArray
     }
-    return newArray
-  }
 
-  public transformToSimpleArray(value: object): any[] {
-    let temporalParameter: any[] = Object.values(value)
-    while (temporalParameter.find(e => typeof e === typeof Object())) {
-      temporalParameter = this.transformObjectToArray(temporalParameter).flat()
+
+    const transformToSimpleArray = (objectWithManyLayers: object): any[] => {
+      let temporalParameter: any[] = Object.values(objectWithManyLayers)
+      while (temporalParameter.find(e => typeof e === typeof Object())) {
+        temporalParameter = transformObjectToArray(temporalParameter).flat()
+      }
+      return temporalParameter
     }
-    return temporalParameter
-  }
 
-  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[]): string[] {
-    this._manipulatedArray = []
+    manipulatedArray = []
     const research: string[] = []
     const filterValue = String(value).toLowerCase()
     
-    if (value === '') this._manipulatedArray = this.budgetCalculateService.showBudgetClientList
+    if (value === '') manipulatedArray = arrayClients
     
     arrayClients.forEach(budget => {
-      const fullArray = this.transformToSimpleArray({...budget})
+      const fullArray = transformToSimpleArray({ ...budget })
       fullArray.forEach(e => {
         if (typeof e === typeof Boolean()) return
         if (String(e).toLowerCase().includes(filterValue)) {
           
           if (!research.includes(e)) research.push(e)
           
-          if (!this._manipulatedArray.includes(budget)) 
-          this._manipulatedArray.push(budget)
+          if (!manipulatedArray.includes(budget))
+          manipulatedArray.push(budget)
         }
       })
     })
+
+    // console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 60 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ manipulatedArray", manipulatedArray)
     return research
   }
 
 
-  public get showManipulatedArray() { return this._manipulatedArray }
+  // public get showManipulatedArray() { return this._manipulatedArray }
 
 }

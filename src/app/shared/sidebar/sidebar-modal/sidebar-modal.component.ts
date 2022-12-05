@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { map, Observable, startWith } from 'rxjs';
 
-import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
 import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
+import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 
 @Component({
   selector: 'app-sidebar-modal',
@@ -13,14 +13,12 @@ import { ManipulateBudgetsService } from '../../../home/services/manipulate-budg
   styleUrls: ['./sidebar-modal.component.scss']
 })
 export class SidebarModalComponent implements OnInit {
+
   budgetArrayList: BudgetClient[]
   manipulateBudgetArrayList: BudgetClient[]
 
   myControl: FormControl
 
-  // options: FormGroup
-
-  // manipulateBudgetArrayList!: Observable<BudgetClient[]>
   filteredOptions!: Observable<string[]>
 
   constructor(
@@ -31,32 +29,26 @@ export class SidebarModalComponent implements OnInit {
   ) {
 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
-    this.manipulateBudgetArrayList = this.manipulateBudgetsService.showManipulatedArray
+    this.manipulateBudgetArrayList = this.budgetCalculateService.showBudgetClientList
 
     this.myControl = this.fb.control('');
-/* 
-    this.options = this.fb.group({
-      color: 'primary',
-      fontSize: [16, Validators.min(10)]
-    }); */
+
   }
 
-/*   deleteBudge(i: number) {
-    this.budgetArrayList.splice(i, 1)
-    this.budgetCalculateService.localeStorageSave(this.budgetArrayList)
-  } */
+  filterAutocompleteClients = this.manipulateBudgetsService.filterAutocompleteClients
 
-  
-  
+  onMouseT(){
+    console.log(this.manipulateBudgetArrayList);
+    
+  }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(),
-      map(value => {
-    console.log(this.manipulateBudgetArrayList);
-        
-    this.manipulateBudgetArrayList = this.manipulateBudgetsService.showManipulatedArray
-    return this.manipulateBudgetsService.filterAutocompleteClients(value || '', this.budgetArrayList)}),
+      startWith(''),
+      map((value, i) => {
+        // if (i === 2) this.manipulateBudgetArrayList = []
+        console.log("🚀 ~ file: sidebar-modal.component.ts ~ line 50 ~ SidebarModalComponent ~ ngOnInit ~ this.manipulateBudgetArrayList", this.manipulateBudgetArrayList)
+    return this.filterAutocompleteClients(value, this.budgetArrayList, this.manipulateBudgetArrayList, i)}),
     )
   }
 }
