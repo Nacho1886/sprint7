@@ -15,7 +15,7 @@ import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 export class SidebarModalComponent implements OnInit {
 
   budgetArrayList: BudgetClient[]
-  manipulateBudgetArrayList: BudgetClient[]
+  manipulateBudgetArrayList!: Observable<BudgetClient[]>
 
   myControl: FormControl
 
@@ -29,7 +29,7 @@ export class SidebarModalComponent implements OnInit {
   ) {
 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
-    this.manipulateBudgetArrayList = this.budgetCalculateService.showBudgetClientList
+    // this.manipulateBudgetArrayList = this.budgetCalculateService.showBudgetClientList
 
     this.myControl = this.fb.control('');
 
@@ -38,16 +38,21 @@ export class SidebarModalComponent implements OnInit {
   transformObjectToArray = this.manipulateBudgetsService.transformObjectToArray
   transformToSimpleArray = this.manipulateBudgetsService.transformToSimpleArray
   filterAutocompleteClients = this.manipulateBudgetsService.filterAutocompleteClients
+  filterArrayClients = this.manipulateBudgetsService.filterArrayClients
 
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map((value, i) => {
-        // console.log("🚀 ~ file: sidebar-modal.component.ts ~ line 50 ~ SidebarModalComponent ~ ngOnInit ~ this.manipulateBudgetArrayList", this.manipulateBudgetArrayList)
-    return this.filterAutocompleteClients(value, this.budgetArrayList, this.manipulateBudgetArrayList, i)}),
+      map(value => {
+    return this.filterAutocompleteClients(value, this.budgetArrayList)}),
     )
-    // .subscribe(observer => console.log(observer))
-    this.myControl.valueChanges.subscribe(observer => console.log(observer))
+    this.manipulateBudgetArrayList = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+    return this.filterArrayClients(value, this.budgetArrayList)}),
+    )
+    /* .subscribe(observer => console.log(observer))
+    this.myControl.valueChanges.subscribe(observer => console.log(observer)) */
   }
 }

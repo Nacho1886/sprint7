@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BudgetClient } from '../interfaces/BudgetClient';
 import { BudgetCalculateService } from './budget-calculate.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,17 @@ export class ManipulateBudgetsService {
 
   constructor(private budgetCalculateService: BudgetCalculateService) { }
 
-  public deleteBudge(i: number, array: BudgetClient[]): void {
-    array.splice(i, 1)
-    this.budgetCalculateService.localeStorageSave(array)
+  // localeStorageSave = this.budgetCalculateService.localeStorageSave
+
+  public deleteBudge(i: number, array: Observable<BudgetClient[]>): void {
+    array.subscribe(budgets => {
+      budgets.splice(i, 1)
+      localStorage.setItem('Presupuesto cliente', JSON.stringify(budgets))
+      console.log("🚀 ~ file: manipulate-budgets.service.ts:17 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets)
+    })
+    
+    /* array.splice(i, 1)
+    this.budgetCalculateService.localeStorageSave(array) */
   }
 
 
@@ -39,13 +48,31 @@ export class ManipulateBudgetsService {
 
 
 
-  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[], manipulatedArray: BudgetClient[], i: number): string[] {
-    // console.log(i);
-    
 
-    manipulatedArray = []
+
+  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[]): string[] {
+    
     const research: string[] = []
     const filterValue = String(value).toLowerCase()
+    
+    arrayClients.forEach(budget => {
+      const fullArray = this.transformToSimpleArray({ ...budget })
+      fullArray.forEach(e => {
+        if (typeof e === typeof Boolean()) return
+        if (String(e).toLowerCase().includes(filterValue)) {
+          
+          if (!research.includes(e)) research.push(e)
+        }
+      })
+    })
+    return research
+  }
+
+  public filterArrayClients(value: string, arrayClients: BudgetClient[]): BudgetClient[] {
+    
+    const research: string[] = []
+    const filterValue = String(value).toLowerCase()
+    let manipulatedArray: BudgetClient[] = []
     
     if (value === '') manipulatedArray = arrayClients
     
@@ -62,10 +89,7 @@ export class ManipulateBudgetsService {
         }
       })
     })
-
-    console.log("🚀 ~ file: manipulate-budgets.service.ts:69 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ research", research)
-    // console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 60 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ manipulatedArray", manipulatedArray)
-    return research
+    return manipulatedArray
   }
 
 
