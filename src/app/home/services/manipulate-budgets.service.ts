@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BudgetClient } from '../interfaces/BudgetClient';
-import { BudgetCalculateService } from './budget-calculate.service';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -8,15 +7,13 @@ import { Observable, map } from 'rxjs';
 })
 export class ManipulateBudgetsService {
 
-  constructor(private budgetCalculateService: BudgetCalculateService) { }
+  constructor() { }
 
-/*   public deleteBudge(i: number, origionalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
-    filterArray.subscribe((budgets: BudgetClient[]) => {
-        const index = origionalArray.findIndex(budget => budget === budgets[i])
-        originalArray.splice(index, 1)
-        localStorage.setItem('Presupuesto cliente', JSON.stringify(originalArray))
-      }).unsubscribe()
-  } */
+  public deleteBudge(id: number, originalArray: BudgetClient[]): void {
+    const index = originalArray.findIndex(budget => budget.id === id)
+    originalArray.splice(index, 1)
+    localStorage.setItem('Presupuesto cliente', JSON.stringify(originalArray))
+  }
 
 
   public transformObjectToArray(object: object): any[] {

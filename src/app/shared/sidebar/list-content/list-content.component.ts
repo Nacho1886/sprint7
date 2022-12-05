@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
 import { Observable } from 'rxjs';
+import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
 
 @Component({
   selector: 'app-list-content',
@@ -14,11 +15,12 @@ export class ListContentComponent {
   @Input('array') filteredArray!: Observable<BudgetClient[]>
 
   constructor(
-    private budgetCalculateService: BudgetCalculateService
+    private budgetCalculateService: BudgetCalculateService,
+    private manipulateBudgetsService: ManipulateBudgetsService
     ) { 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
   }
 
-  // deleteBudge = this.manipulateBudgetsService.deleteBudge
+  deleteBudge = this.manipulateBudgetsService.deleteBudge
 
 }
