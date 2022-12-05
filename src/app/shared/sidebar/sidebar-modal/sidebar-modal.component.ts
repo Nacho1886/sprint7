@@ -35,19 +35,17 @@ export class SidebarModalComponent implements OnInit {
 
   }
 
+  transformObjectToArray = this.manipulateBudgetsService.transformObjectToArray
+  transformToSimpleArray = this.manipulateBudgetsService.transformToSimpleArray
   filterAutocompleteClients = this.manipulateBudgetsService.filterAutocompleteClients
 
-  onMouseT(){
-    console.log(this.manipulateBudgetArrayList);
-    
-  }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value, i) => {
         // console.log("🚀 ~ file: sidebar-modal.component.ts ~ line 50 ~ SidebarModalComponent ~ ngOnInit ~ this.manipulateBudgetArrayList", this.manipulateBudgetArrayList)
-    return this.filterAutocompleteClients(value, this.budgetArrayList, i)}),
+    return this.filterAutocompleteClients(value, this.budgetArrayList, this.manipulateBudgetArrayList, i)}),
     )
     // .subscribe(observer => console.log(observer))
     this.myControl.valueChanges.subscribe(observer => console.log(observer))
