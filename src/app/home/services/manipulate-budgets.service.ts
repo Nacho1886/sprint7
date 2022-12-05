@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BudgetClient } from '../interfaces/BudgetClient';
 import { BudgetCalculateService } from './budget-calculate.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManipulateBudgetsService {
 
-  manipulatedArray!: BudgetClient[]
-
   constructor(private budgetCalculateService: BudgetCalculateService) { }
 
-  // localeStorageSave = this.budgetCalculateService.localeStorageSave
-
-  public deleteBudge(i: number, origionalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
-    filterArray.subscribe(budgets => {
-      console.log("🚀 ~ file: manipulate-budgets.service.ts:19 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets) // budgets no es asincrono, no se filtra
-      const index = origionalArray.find(budget => budget === budgets[i])
-      console.log("🚀 ~ file: manipulate-budgets.service.ts:18 ~ ManipulateBudgetsService ~ deleteBudge ~ i", i)
-      console.log("🚀 ~ file: manipulate-budgets.service.ts:20 ~ ManipulateBudgetsService ~ deleteBudge ~ index", index)
-      /* budgets.splice(i, 1)
-      localStorage.setItem('Presupuesto cliente', JSON.stringify(budgets)) */
-    }).unsubscribe()
-  }
+/*   public deleteBudge(i: number, origionalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
+    filterArray.subscribe((budgets: BudgetClient[]) => {
+        const index = origionalArray.findIndex(budget => budget === budgets[i])
+        originalArray.splice(index, 1)
+        localStorage.setItem('Presupuesto cliente', JSON.stringify(originalArray))
+      }).unsubscribe()
+  } */
 
 
   public transformObjectToArray(object: object): any[] {
@@ -45,9 +38,6 @@ export class ManipulateBudgetsService {
     }
     return temporalParameter
   }
-
-
-
 
 
   public filterAutocompleteClients(value: string, arrayClients: BudgetClient[]): string[] {
@@ -93,6 +83,6 @@ export class ManipulateBudgetsService {
   }
 
 
-  public get showManipulatedArray() { return this.manipulatedArray }
+  // public get showManipulatedArray() { return this.manipulatedArray }
 
 }

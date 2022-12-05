@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { map, observable, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 
 import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
 import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
@@ -29,7 +29,6 @@ export class SidebarModalComponent implements OnInit {
   ) {
 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
-    // this.manipulateBudgetArrayList = this.budgetCalculateService.showBudgetClientList
 
     this.myControl = this.fb.control('');
 
