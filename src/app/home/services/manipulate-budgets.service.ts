@@ -7,7 +7,7 @@ import { BudgetCalculateService } from './budget-calculate.service';
 })
 export class ManipulateBudgetsService {
 
-  
+  manipulatedArray!: BudgetClient[]
 
   constructor(private budgetCalculateService: BudgetCalculateService) { }
 
@@ -20,8 +20,8 @@ export class ManipulateBudgetsService {
 
 
 
-  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[], manipulatedArray: BudgetClient[], i: number): string[] {
-    console.log(i);
+  public filterAutocompleteClients(value: string, arrayClients: BudgetClient[],  i: number): string[] {
+    // console.log(i);manipulatedArray: BudgetClient[],
     
     const transformObjectToArray = (object: object): any[] => {
       const newArray: any[] = []
@@ -43,11 +43,11 @@ export class ManipulateBudgetsService {
       return temporalParameter
     }
 
-    manipulatedArray = []
+    this.manipulatedArray = []
     const research: string[] = []
     const filterValue = String(value).toLowerCase()
     
-    if (value === '') manipulatedArray = arrayClients
+    if (value === '') this.manipulatedArray = arrayClients
     
     arrayClients.forEach(budget => {
       const fullArray = transformToSimpleArray({ ...budget })
@@ -57,17 +57,17 @@ export class ManipulateBudgetsService {
           
           if (!research.includes(e)) research.push(e)
           
-          if (!manipulatedArray.includes(budget))
-          manipulatedArray.push(budget)
+          if (!this.manipulatedArray.includes(budget))
+          this.manipulatedArray.push(budget)
         }
       })
     })
 
-    // console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 60 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ manipulatedArray", manipulatedArray)
+    // console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 60 ~ ManipulateBudgetsService ~ filterAutocompleteClients ~ this.manipulatedArray", this.manipulatedArray)
     return research
   }
 
 
-  // public get showManipulatedArray() { return this._manipulatedArray }
+  public get showManipulatedArray() { return this.manipulatedArray }
 
 }

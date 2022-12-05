@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { map, Observable, startWith } from 'rxjs';
+import { map, observable, Observable, startWith } from 'rxjs';
 
 import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
 import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
@@ -46,9 +46,10 @@ export class SidebarModalComponent implements OnInit {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value, i) => {
-        // if (i === 2) this.manipulateBudgetArrayList = []
-        console.log("🚀 ~ file: sidebar-modal.component.ts ~ line 50 ~ SidebarModalComponent ~ ngOnInit ~ this.manipulateBudgetArrayList", this.manipulateBudgetArrayList)
-    return this.filterAutocompleteClients(value, this.budgetArrayList, this.manipulateBudgetArrayList, i)}),
+        // console.log("🚀 ~ file: sidebar-modal.component.ts ~ line 50 ~ SidebarModalComponent ~ ngOnInit ~ this.manipulateBudgetArrayList", this.manipulateBudgetArrayList)
+    return this.filterAutocompleteClients(value, this.budgetArrayList, i)}),
     )
+    // .subscribe(observer => console.log(observer))
+    this.myControl.valueChanges.subscribe(observer => console.log(observer))
   }
 }
