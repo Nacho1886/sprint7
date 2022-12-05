@@ -14,15 +14,15 @@ export class ManipulateBudgetsService {
 
   // localeStorageSave = this.budgetCalculateService.localeStorageSave
 
-  public deleteBudge(i: number, array: Observable<BudgetClient[]>): void {
-    array.subscribe(budgets => {
-      budgets.splice(i, 1)
-      localStorage.setItem('Presupuesto cliente', JSON.stringify(budgets))
-      console.log("🚀 ~ file: manipulate-budgets.service.ts:17 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets)
-    })
-    
-    /* array.splice(i, 1)
-    this.budgetCalculateService.localeStorageSave(array) */
+  public deleteBudge(i: number, origionalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
+    filterArray.subscribe(budgets => {
+      console.log("🚀 ~ file: manipulate-budgets.service.ts:19 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets) // budgets no es asincrono, no se filtra
+      const index = origionalArray.find(budget => budget === budgets[i])
+      console.log("🚀 ~ file: manipulate-budgets.service.ts:18 ~ ManipulateBudgetsService ~ deleteBudge ~ i", i)
+      console.log("🚀 ~ file: manipulate-budgets.service.ts:20 ~ ManipulateBudgetsService ~ deleteBudge ~ index", index)
+      /* budgets.splice(i, 1)
+      localStorage.setItem('Presupuesto cliente', JSON.stringify(budgets)) */
+    }).unsubscribe()
   }
 
 
@@ -56,7 +56,7 @@ export class ManipulateBudgetsService {
     const filterValue = String(value).toLowerCase()
     
     arrayClients.forEach(budget => {
-      const fullArray = this.transformToSimpleArray({ ...budget })
+      const fullArray = this.transformToSimpleArray(budget)
       fullArray.forEach(e => {
         if (typeof e === typeof Boolean()) return
         if (String(e).toLowerCase().includes(filterValue)) {

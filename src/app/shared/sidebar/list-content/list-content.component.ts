@@ -11,20 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class ListContentComponent {
 
-  // budgetArrayList: BudgetClient[]
+  budgetArrayList: BudgetClient[]
   @Input('array') filteredArray!: Observable<BudgetClient[]>
 
   constructor(
-    // private budgetCalculateService: BudgetCalculateService,
+    private budgetCalculateService: BudgetCalculateService,
     private manipulateBudgetsService: ManipulateBudgetsService
     ) { 
-    // this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
+    this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
   }
 
   deleteBudge = this.manipulateBudgetsService.deleteBudge
-  onMouseT(){
-    console.log(this.filteredArray);
-    
-  }
 
 }

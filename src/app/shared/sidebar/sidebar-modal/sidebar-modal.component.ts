@@ -45,14 +45,14 @@ export class SidebarModalComponent implements OnInit {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
-    return this.filterAutocompleteClients(value, this.budgetArrayList)}),
+        return this.filterAutocompleteClients(value, this.budgetArrayList)
+      })
     )
     this.manipulateBudgetArrayList = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
-    return this.filterArrayClients(value, this.budgetArrayList)}),
+        return this.filterArrayClients(value, this.budgetArrayList)
+      })
     )
-    /* .subscribe(observer => console.log(observer))
-    this.myControl.valueChanges.subscribe(observer => console.log(observer)) */
   }
 }
