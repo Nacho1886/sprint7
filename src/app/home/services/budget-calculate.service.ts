@@ -15,12 +15,10 @@ export class BudgetCalculateService {
 
   private _services: ServiceWeb[] = servicesData
   private _budget!: Budget
-  private _counterId: number
 
 
   constructor() {
     this._budgetList = JSON.parse(localStorage.getItem('Presupuesto cliente')!) ?? []
-    this._counterId = this.showBudgetClientList.length
   }
 
   public get showBudgetClientList(): BudgetClient[] { return this._budgetList }
@@ -51,18 +49,22 @@ export class BudgetCalculateService {
     return total
   }
   
+  private _calculateId(ID: number): number {
+    let newId = ID
+    while (this.showBudgetClientList.find(e => e.id === newId)) newId++
+    return newId
+  }
 
   public saveAllBudgetClient(formJson: ClientRegistration) {
     const completBudget: BudgetClient = {
-      id: this._counterId,
+      id: this._calculateId(this.showBudgetClientList.length),
       clientRegistration: formJson,
       service: this._budget,
       price: this.calculateTotalPrice(this.showBudget, this.showServices),
-      date: new Date().toLocaleDateString()
+      date: new Date().toLocaleString()
     }
     
     this._budgetList.push({ ...completBudget })
-    this._counterId = this._budgetList.length
 
     localStorage.setItem('Presupuesto cliente', JSON.stringify(this._budgetList))
   }

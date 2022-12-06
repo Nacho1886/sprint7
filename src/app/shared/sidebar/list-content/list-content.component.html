@@ -1,9 +1,9 @@
 <div class="container justify-content-center">
     <div class="row justify-content-center hoverControl">
-        <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of (filteredArray | async)">
+        <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of (filteredArray | async |order:orderBy)">
             <hr>
-            <p><strong>Nom de pressupost:</strong> {{budgetClient.clientRegistration.name}}</p>
-            <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client}}</p>
+            <p><strong>Nom de pressupost:</strong> {{budgetClient.clientRegistration.name | titlecase}}</p>
+            <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client | titlecase}}</p>
             <p><strong>Data:</strong> {{budgetClient.date}}</p>
             <div *ngIf="budgetClient.service.webPage">
                 <p>Una pàgina web amb {{budgetClient.service.options.pages}} 
@@ -25,9 +25,9 @@
                     <div class="col-2"></div>
                     <p class="col-8">
                         <strong>Preu total:</strong> {{budgetClient.price}}€</p>
-                    <button mat-icon-button class="col-2" (click)="deleteBudge(budgetClient.id, budgetArrayList)">
+                    <!-- <button mat-icon-button class="col-2" (click)="deleteBudge(budgetClient.id, budgetArrayList, filteredArray)">
                         <mat-icon>delete_outline</mat-icon>
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <hr>

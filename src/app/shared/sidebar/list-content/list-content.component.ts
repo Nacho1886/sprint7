@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { BudgetClient } from '../../../home/interfaces/BudgetClient';
-import { BudgetCalculateService } from '../../../home/services/budget-calculate.service';
 import { Observable } from 'rxjs';
 import { ManipulateBudgetsService } from '../../../home/services/manipulate-budgets.service';
 
@@ -11,16 +10,12 @@ import { ManipulateBudgetsService } from '../../../home/services/manipulate-budg
 })
 export class ListContentComponent {
 
-  budgetArrayList: BudgetClient[]
   @Input('array') filteredArray!: Observable<BudgetClient[]>
+  @Input() orderBy!: string[]
 
-  constructor(
-    private budgetCalculateService: BudgetCalculateService,
-    private manipulateBudgetsService: ManipulateBudgetsService
-    ) { 
-    this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
-  }
-
+  constructor( private manipulateBudgetsService: ManipulateBudgetsService ) { }
+  
+  
   deleteBudge = this.manipulateBudgetsService.deleteBudge
-
+  
 }

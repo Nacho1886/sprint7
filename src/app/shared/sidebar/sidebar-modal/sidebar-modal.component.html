@@ -18,16 +18,18 @@
                 [matMenuTriggerFor]="orderMenu">Ordena</button>
         </div>
         <mat-menu #orderMenu="matMenu">
-            <button type="button" mat-menu-item>Reinicia l'ordre</button>
-            <button type="button" mat-menu-item>Per data</button>
+            <button type="button" mat-menu-item (click)="orderBy = ['id']">Reinicia l'ordre</button>
             <button type="button" mat-menu-item [matMenuTriggerFor]="alphabet">Alfabèticament</button>
+            <button type="button" mat-menu-item (click)="orderBy = ['date']">Per data</button>
+            <button type="button" mat-menu-item (click)="orderBy = ['price']">Per preu</button>
+            <button type="button" mat-menu-item (click)="orderBy = ['id','']">Dona la volta a la llista</button>
         </mat-menu>
         <mat-menu #alphabet="matMenu">
-            <button type="button" mat-menu-item>Per nom</button>
-            <button type="button" mat-menu-item>Per client</button>
+            <button type="button" mat-menu-item (click)="orderBy = ['clientRegistration', 'name']">Per nom</button>
+            <button type="button" mat-menu-item (click)="orderBy = ['clientRegistration', 'client']">Per client</button>
         </mat-menu>
     </form>
 
     <hr class="pb-4">
-        <app-list-content [array]="manipulateBudgetArrayList"></app-list-content>
+        <app-list-content [orderBy]="orderBy" [array]="manipulateBudgetArrayList"></app-list-content>
 </div>

@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BudgetClient } from '../interfaces/BudgetClient';
 import { Observable, map } from 'rxjs';
+import { BudgetCalculateService } from './budget-calculate.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManipulateBudgetsService {
 
-  constructor() { }
+  constructor(private bcs: BudgetCalculateService) { }
 
-  public deleteBudge(id: number, originalArray: BudgetClient[]): void {
-    const index = originalArray.findIndex(budget => budget.id === id)
-    originalArray.splice(index, 1)
+  public deleteBudge(id: number, originalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
+    const deleter = (array: BudgetClient[]) => {
+      const index = array.findIndex(budget => budget.id === id)
+      array.splice(index, 1)
+    }
+    
+    deleter(originalArray)
+    /* filterArray.subscribe(budgets => {
+      console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 21 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets)
+      deleter(budgets)
+      console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 21 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets)
+    }).unsubscribe() */
+    filterArray.subscribe(e=>console.log(e)
+    )
     localStorage.setItem('Presupuesto cliente', JSON.stringify(originalArray))
   }
 
@@ -54,14 +66,14 @@ export class ManipulateBudgetsService {
     })
     return research
   }
-
+  
   public filterArrayClients(value: string, arrayClients: BudgetClient[]): BudgetClient[] {
     
     const research: string[] = []
     const filterValue = String(value).toLowerCase()
-    let manipulatedArray: BudgetClient[] = []
+    const manipulatedArray = [...arrayClients]
     
-    if (value === '') manipulatedArray = arrayClients
+    if (value !== '') manipulatedArray.splice(0)
     
     arrayClients.forEach(budget => {
       const fullArray = this.transformToSimpleArray({ ...budget })

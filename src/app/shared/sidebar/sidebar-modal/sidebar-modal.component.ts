@@ -15,11 +15,13 @@ import { BudgetClient } from '../../../home/interfaces/BudgetClient';
 export class SidebarModalComponent implements OnInit {
 
   budgetArrayList: BudgetClient[]
+  
+  myControl: FormControl
+  
+  filteredOptions!: Observable<string[]>
   manipulateBudgetArrayList!: Observable<BudgetClient[]>
 
-  myControl: FormControl
-
-  filteredOptions!: Observable<string[]>
+  orderBy: string[] = []
 
   constructor(
     public dialogRef: MatDialogRef<SidebarModalComponent>,
@@ -29,7 +31,6 @@ export class SidebarModalComponent implements OnInit {
   ) {
 
     this.budgetArrayList = this.budgetCalculateService.showBudgetClientList
-
     this.myControl = this.fb.control('');
 
   }
