@@ -7,16 +7,21 @@ const routes: Routes = [
   {
     path: '',
     component: WelcomePageComponent,
-    pathMatch: 'full'
+    // pathMatch: 'full'
   },
   {
-    path: 'paginaWeb/:webPage/campaniaSeo/:seoCampaign/campaniaAds/:adsCampaign/Paginas/:pages/Idiomas/:languages',
+    path: 'home/',
     component: HomePageComponent
   },
   {
+    // path: 'paginaWeb={:webPage}=campaniaSeo={:seoCampaign}=campaniaAds={:adsCampaign}=Paginas={:pages}=Idiomas={:languages}',
+    path: 'paginaWeb/:webPage/campaniaSeo/:seoCampaign/campaniaAds/:adsCampaign/Paginas/:pages/Idiomas/:languages',
+    component: HomePageComponent
+  },
+  /* {
     path:'**',
     redirectTo: ''
-  }
+  } */
 ];
 
 @NgModule({

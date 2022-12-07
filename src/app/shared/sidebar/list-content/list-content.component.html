@@ -1,6 +1,6 @@
 <div class="container justify-content-center">
     <div class="row justify-content-center hoverControl">
-        <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of (filteredArray | async |order:orderBy)">
+        <div mat-dialog-content class="budgetClass col-12" *ngFor="let budgetClient of (filteredArray | async | order:orderBy)">
             <hr>
             <p><strong>Nom de pressupost:</strong> {{budgetClient.clientRegistration.name | titlecase}}</p>
             <p><strong>Nom de client:</strong> {{budgetClient.clientRegistration.client | titlecase}}</p>

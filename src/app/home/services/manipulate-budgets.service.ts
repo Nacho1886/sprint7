@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BudgetClient } from '../interfaces/BudgetClient';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+
 import { BudgetCalculateService } from './budget-calculate.service';
+import { BudgetClient } from '../interfaces/BudgetClient';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,7 @@ export class ManipulateBudgetsService {
     /* filterArray.subscribe(budgets => {
       deleter(budgets)
     }).unsubscribe() */
-    filterArray.subscribe(e=>console.log(e)
-    )
+
     localStorage.setItem('Presupuesto cliente', JSON.stringify(originalArray))
   }
 
@@ -43,7 +43,6 @@ export class ManipulateBudgetsService {
     while (temporalParameter.find(e => typeof e === typeof Object()))
     temporalParameter = this.transformObjectToArray(temporalParameter).flat()
 
-    
     return temporalParameter
   }
 
