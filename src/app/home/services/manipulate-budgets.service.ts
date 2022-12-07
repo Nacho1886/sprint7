@@ -18,9 +18,7 @@ export class ManipulateBudgetsService {
     
     deleter(originalArray)
     /* filterArray.subscribe(budgets => {
-      console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 21 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets)
       deleter(budgets)
-      console.log("🚀 ~ file: manipulate-budgets.service.ts ~ line 21 ~ ManipulateBudgetsService ~ deleteBudge ~ budgets", budgets)
     }).unsubscribe() */
     filterArray.subscribe(e=>console.log(e)
     )
@@ -42,9 +40,10 @@ export class ManipulateBudgetsService {
 
   public transformToSimpleArray(objectWithManyLayers: object): any[] {
     let temporalParameter: any[] = Object.values(objectWithManyLayers)
-    while (temporalParameter.find(e => typeof e === typeof Object())) {
-      temporalParameter = this.transformObjectToArray(temporalParameter).flat()
-    }
+    while (temporalParameter.find(e => typeof e === typeof Object()))
+    temporalParameter = this.transformObjectToArray(temporalParameter).flat()
+
+    
     return temporalParameter
   }
 
