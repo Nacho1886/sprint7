@@ -1,6 +1,7 @@
-import { OnDestroy } from '@angular/core';
+import { OnDestroy, OnInit } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ManipulateBudgetsService } from '../../services/manipulate-budgets.service';
 
 @Component({
   selector: 'app-panel',
@@ -10,8 +11,9 @@ import { FormGroup } from '@angular/forms';
 export class PanelComponent implements OnDestroy {
 
   @Input('options') myOptionsForm!: FormGroup
+  @Input() optionsDisplay!: boolean
 
-  constructor() { }
+  constructor(private mbs: ManipulateBudgetsService) { }
   
 
   calculateIncDec(inputName: string, increment: boolean = false): void { 
@@ -23,14 +25,9 @@ export class PanelComponent implements OnDestroy {
 
   isInvalid(inputName: string) { return this.myOptionsForm.controls[inputName].errors }
 
-
-  resetValues(inputName: string) {
-    this.myOptionsForm.get(inputName)!.patchValue(1)
-  }
-
   
   ngOnDestroy(): void {
-    this.resetValues('pages')
-    this.resetValues('languages')
+    // this.manipulateBudgetService.resetValueToFalse(this.showOptions, ['webPage', 'seoCampaign', 'adsCampaign'])
+    this.mbs.resetValueTo1(this.myOptionsForm, ['pages', 'languages'])
   }
 }

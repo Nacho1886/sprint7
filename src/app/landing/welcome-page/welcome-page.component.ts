@@ -5,13 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
-export class WelcomePageComponent implements OnInit {
-
-  webPage: boolean = false;
-
+export class WelcomePageComponent {
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

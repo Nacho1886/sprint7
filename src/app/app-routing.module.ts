@@ -5,12 +5,12 @@ import { WelcomePageComponent } from './landing/welcome-page/welcome-page.compon
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'landing',
     component: WelcomePageComponent,
-    // pathMatch: 'full'
+    pathMatch: 'full'
   },
   {
-    path: 'home/',
+    path: 'home',
     component: HomePageComponent
   },
   {

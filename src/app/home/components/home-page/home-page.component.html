@@ -11,7 +11,7 @@
                     <hr>
                     <div class="row" *ngIf="optionsDisplay">
                         <div class="col-1"></div>
-                        <app-panel class="col-10" [options]="showOptions"></app-panel>
+                        <app-panel class="col-10" [optionsDisplay]="optionsDisplay" [options]="showOptions"></app-panel>
                         <div class="col-1 d-flex flex-column justify-content-around">
                             <app-help-modal [data]="'pàgines'" class="mb-2"></app-help-modal>
                             <app-help-modal [data]="'llenguatges'" class="mBottom"></app-help-modal>
@@ -51,7 +51,7 @@
             <div class="row pt-4 justify-content-between">
                 <app-sidebar-controller class="col-12 col-lg-6 mt-2"></app-sidebar-controller>
                 <div class=" col-12 col-lg-6 mt-2 d-flex justify-content-center">
-                    <button mat-raised-button color="accent" class="w-75" routerLink="">Torna enrere</button>
+                    <button mat-raised-button color="accent" class="w-75" routerLink="/landing">Torna enrere</button>
                 </div>
                 <div>{{myForm.value | json }}</div>
                 <div>{{myForm.valid | json }}</div>

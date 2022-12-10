@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { BudgetCalculateService } from './budget-calculate.service';
 import { BudgetClient } from '../interfaces/BudgetClient';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManipulateBudgetsService {
 
-  constructor(private bcs: BudgetCalculateService) { }
+  constructor() { }
+
+  resetValueToFalse(form: FormGroup ,inputNames: string[]) {
+    inputNames.forEach(e => form.get(e)!.patchValue(false))
+  }
+  resetValueTo1(form: FormGroup ,inputNames: string[]) {
+    inputNames.forEach(e => form.get(e)!.patchValue(1))
+  }
+
+  resetValuesForm(form: FormGroup) {
+    // this.resetValueTo1(form, 'languages')
+  
+}
 
   public deleteBudge(id: number, originalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
     const deleter = (array: BudgetClient[]) => {
