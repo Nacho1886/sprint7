@@ -11,7 +11,6 @@ import { ManipulateBudgetsService } from '../../services/manipulate-budgets.serv
 export class PanelComponent implements OnDestroy {
 
   @Input('options') myOptionsForm!: FormGroup
-  @Input() optionsDisplay!: boolean
 
   constructor(private mbs: ManipulateBudgetsService) { }
   
@@ -27,7 +26,6 @@ export class PanelComponent implements OnDestroy {
 
   
   ngOnDestroy(): void {
-    // this.manipulateBudgetService.resetValueToFalse(this.showOptions, ['webPage', 'seoCampaign', 'adsCampaign'])
     this.mbs.resetValueTo1(this.myOptionsForm, ['pages', 'languages'])
   }
 }

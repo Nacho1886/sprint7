@@ -18,11 +18,6 @@ export class ManipulateBudgetsService {
     inputNames.forEach(e => form.get(e)!.patchValue(1))
   }
 
-  resetValuesForm(form: FormGroup) {
-    // this.resetValueTo1(form, 'languages')
-  
-}
-
   public deleteBudge(id: number, originalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
     const deleter = (array: BudgetClient[]) => {
       const index = array.findIndex(budget => budget.id === id)

@@ -25,6 +25,15 @@ export class BudgetCalculateService {
   public get showBudget(): Budget { return this._budget }
   public get showServices() { return this._services }
 
+  public validateStringToBoolean(value: string): boolean {
+    if (value === 'true') return true
+    return false
+  }
+  public validateStringToNumber(value: number): number | null { 
+    if (isNaN(value)) return null
+    return value
+  }
+
 
   public formIsValid(control: AbstractControl) {
     const valid = Object.values(control.value).find(e => e === true)

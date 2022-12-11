@@ -25,34 +25,17 @@ export class HomePageComponent implements OnInit {
     this._change = false
 
     this.router.navigate(['/home'], {queryParams: this.router.getCurrentNavigation()!.initialUrl.queryParams} )
-
-    /* this.myForm.valueChanges.subscribe(value=> {
-      const { webPage, options, seoCampaign, adsCampaign } = value
-      const { pages, languages } = options
-      const url: UrlValues = { webPage, seoCampaign, adsCampaign, pages, languages }
-
-      this.router.navigate(['/home'], {queryParams: url})
-    }) */
-  }
-
-  validateStringToBoolean(value: string): boolean {
-    if (value === 'true') return true
-    return false
-  }
-  validateStringToNumber(value: number): number | null { 
-    if (isNaN(value)) return null
-    return value
   }
 
   initForm(values?: UrlValues) {
     this.myForm = this.fb.group({
-      webPage: [this.validateStringToBoolean(String(values?.webPage)) ?? false, Validators.required],
+      webPage: [this.budgetCalculateService.validateStringToBoolean(String(values?.webPage)) ?? false, Validators.required],
       options: this.fb.group({
-        pages: [this.validateStringToNumber(Number(values?.pages)) ?? 1, [Validators.required, Validators.min(1)]],
-        languages: [this.validateStringToNumber(Number(values?.languages)) ?? 1, [Validators.required, Validators.min(1)]]
+        pages: [this.budgetCalculateService.validateStringToNumber(Number(values?.pages)) ?? 1, [Validators.required, Validators.min(1)]],
+        languages: [this.budgetCalculateService.validateStringToNumber(Number(values?.languages)) ?? 1, [Validators.required, Validators.min(1)]]
       }),
-      seoCampaign: [this.validateStringToBoolean(String(values?.seoCampaign)) ?? false, Validators.required],
-      adsCampaign: [this.validateStringToBoolean(String(values?.adsCampaign)) ?? false, Validators.required]
+      seoCampaign: [this.budgetCalculateService.validateStringToBoolean(String(values?.seoCampaign)) ?? false, Validators.required],
+      adsCampaign: [this.budgetCalculateService.validateStringToBoolean(String(values?.adsCampaign)) ?? false, Validators.required]
     }, { validator: [this.budgetCalculateService.formIsValid] } as AbstractControlOptions
     )
 
@@ -61,7 +44,8 @@ export class HomePageComponent implements OnInit {
       const { pages, languages } = options
       const url: UrlValues = { webPage, seoCampaign, adsCampaign, pages, languages }
 
-      this.router.navigate(['/home'], {queryParams: url})
+      if (this._change) this.router.navigate(['/home'])
+      if (!this._change) this.router.navigate(['/home'], {queryParams: url})
     })
   }
 
@@ -76,14 +60,20 @@ export class HomePageComponent implements OnInit {
     this.budgetCalculateService.saveBudget(this.myForm.value)
     this.onChange(this._change)
     this.initForm()
+    this.resetValueToFalse(this.myForm, ['webPage', 'seoCampaign', 'adsCampaign'])
   }
 
   calculateTotalPrice = this.budgetCalculateService.calculateTotalPrice
   showServices = this.budgetCalculateService.showServices
+  resetValueToFalse = this.manipulateBudgetService.resetValueToFalse
 
   onChange(change: boolean): void { this._change = !change }
 
   showHelp(value: string) { return value }
+
+  goBack() {
+    this.router.ngOnDestroy()
+  }
 
 
   ngOnInit(): void {
