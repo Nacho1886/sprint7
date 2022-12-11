@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { BudgetCalculateService } from '../../services/budget-calculate.service';
 
@@ -7,7 +7,7 @@ import { BudgetCalculateService } from '../../services/budget-calculate.service'
   templateUrl: './client-names.component.html',
   styleUrls: ['./client-names.component.scss']
 })
-export class ClientNamesComponent implements OnInit {
+export class ClientNamesComponent {
 
   @Input() change!: boolean;
   @Output() backChange: EventEmitter<boolean> = new EventEmitter();
@@ -25,8 +25,4 @@ export class ClientNamesComponent implements OnInit {
     this.budgetCalculateService.saveAllBudgetClient(this.clientForm.value)
     this.backChange.emit(this.change);
   }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -50,7 +50,11 @@ export class BudgetCalculateService {
         services.forEach(({ id, price, options }) => {
           if (id === key) {
             total += price
-            if (options) options.forEach(e => total += e.price * formJson.options[e.id])
+            if (options) {
+              let totalPriceOptions: number = options.price
+              options.id.forEach(e => totalPriceOptions = totalPriceOptions * formJson.options[e])
+              total += totalPriceOptions
+            }
           }
         })
       }
@@ -77,5 +81,4 @@ export class BudgetCalculateService {
 
     localStorage.setItem('Presupuesto cliente', JSON.stringify(this._budgetList))
   }
-
 }

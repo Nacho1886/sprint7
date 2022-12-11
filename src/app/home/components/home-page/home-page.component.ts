@@ -83,7 +83,6 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-
   copyToClipboard() {
     const urlCopied: string = this.router.url
     this.clipboard.copy('http://localhost:4200/' + urlCopied)

@@ -18,7 +18,7 @@ export class ManipulateBudgetsService {
     inputNames.forEach(e => form.get(e)!.patchValue(1))
   }
 
-  public deleteBudge(id: number, originalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void {
+  public deleteBudge(id: number, originalArray: BudgetClient[], filterArray: Observable<BudgetClient[]>): void { // Para eliminar presupuestos del array, no funcionaba bien al ser observables
     const deleter = (array: BudgetClient[]) => {
       const index = array.findIndex(budget => budget.id === id)
       array.splice(index, 1)
@@ -95,8 +95,5 @@ export class ManipulateBudgetsService {
     })
     return manipulatedArray
   }
-
-
-  // public get showManipulatedArray() { return this.manipulatedArray }
 
 }

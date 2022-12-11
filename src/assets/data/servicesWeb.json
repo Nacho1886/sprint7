@@ -2,16 +2,10 @@
     {
         "id": "webPage",
         "price": 500,
-        "options": [
-            {
-                "id": "pages",
-                "price": 30
-            },
-            {
-                "id": "languages",
-                "price": 30
-            }
-        ]
+        "options": {
+            "id": ["pages", "languages"],
+            "price": 30
+        }
     },
     {
         "id": "seoCampaign",
