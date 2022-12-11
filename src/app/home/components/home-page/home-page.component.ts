@@ -28,9 +28,9 @@ export class HomePageComponent implements OnInit {
     this.initForm(this.router.getCurrentNavigation()!.extractedUrl.queryParams as UrlValues)
     this._change = false
 
-    this.router.navigate(['/home'], {queryParams: this.router.getCurrentNavigation()!.initialUrl.queryParams} )
+    this.router.navigate(['/home'], { queryParams: this.router.getCurrentNavigation()!.initialUrl.queryParams })
   }
-  
+
   initForm(values?: UrlValues) {
     this.myForm = this.fb.group({
       webPage: [this.budgetCalculateService.validateStringToBoolean(String(values?.webPage)) ?? false, Validators.required],
@@ -43,13 +43,13 @@ export class HomePageComponent implements OnInit {
     }, { validator: [this.budgetCalculateService.formIsValid] } as AbstractControlOptions
     )
 
-    this.myForm.valueChanges.subscribe(value=> {
+    this.myForm.valueChanges.subscribe(value => {
       const { webPage, options, seoCampaign, adsCampaign } = value
       const { pages, languages } = options
       const url: UrlValues = { webPage, seoCampaign, adsCampaign, pages, languages }
 
       if (this._change) this.router.navigate(['/home'])
-      if (!this._change) this.router.navigate(['/home'], {queryParams: url})
+      if (!this._change) this.router.navigate(['/home'], { queryParams: url })
     })
   }
 
@@ -75,10 +75,14 @@ export class HomePageComponent implements OnInit {
 
   showHelp(value: string) { return value }
 
-  goBack() {
-    this.resetValueToFalse(this.myForm, ['webPage', 'seoCampaign', 'adsCampaign'])
-
+  goBack() { // Chapuza por no poder encontrar porque no funciona el routerLink si webPage es true
+    this.router.navigate(['/landing'])
+    if (this.optionsDisplay) {
+      this.resetValueToFalse(this.myForm, ['webPage', 'seoCampaign', 'adsCampaign'])
+      this.myForm.valueChanges.subscribe(observer => this.router.navigate(['/landing']))
+    }
   }
+
 
   copyToClipboard() {
     const urlCopied: string = this.router.url
