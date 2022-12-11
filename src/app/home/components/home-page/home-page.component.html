@@ -39,10 +39,15 @@
                     <div class="list-group-item text-center container">
                         <h3>Preu total: {{calculateTotalPrice(myForm.value, showServices)}}€</h3>
                         <hr>
-                        <div>
-                            <button class="btn btn-outline-primary" type="submit"
-                                [disabled]="myForm.invalid">Enmagatzema</button>
-                            <button mat-icon-button type="button" [disabled]="myForm.invalid">
+                        <div class="row">
+                            <div class="col-2">
+                                <small class="badge bg-secondary w-auto" *ngIf="showMessage">URL copiada</small>
+                            </div>
+                            <div class="col-1"></div>
+                            <button class="btn btn-outline-primary col-6" type="submit"
+                            [disabled]="myForm.invalid">Enmagatzema</button>
+                            <div class="col-1"></div>
+                            <button class="col-2" mat-icon-button type="button" [disabled]="myForm.invalid" (click)="copyToClipboard()">
                                 <mat-icon>open_in_new</mat-icon>
                             </button>
                         </div>
@@ -56,10 +61,8 @@
             <div class="row pt-4 justify-content-between">
                 <app-sidebar-controller class="col-12 col-lg-6 mt-2"></app-sidebar-controller>
                 <div class=" col-12 col-lg-6 mt-2 d-flex justify-content-center">
-                    <button mat-raised-button color="accent" class="w-75" routerLink="/landing">Torna enrere</button>
+                    <button mat-raised-button color="accent" class="w-75" routerLink="/home/landing">Torna enrere</button>
                 </div>
-                <div>{{myForm.value | json }}</div>
-                <div>{{myForm.valid | json }}</div>
             </div>
         </div>
     </div>

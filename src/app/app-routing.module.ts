@@ -14,14 +14,9 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
-    // path: 'paginaWeb={:webPage}=campaniaSeo={:seoCampaign}=campaniaAds={:adsCampaign}=Paginas={:pages}=Idiomas={:languages}',
-    path: 'paginaWeb/:webPage/campaniaSeo/:seoCampaign/campaniaAds/:adsCampaign/Paginas/:pages/Idiomas/:languages',
-    component: HomePageComponent
-  },
-  /* {
     path:'**',
-    redirectTo: ''
-  } */
+    redirectTo: 'landing'
+  }
 ];
 
 @NgModule({

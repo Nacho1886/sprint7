@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BudgetCalculateService } from '../../services/budget-calculate.service';
 import { FormBuilder, Validators, FormGroup, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UrlValues } from '../../interfaces/UrlValues';
+import { Clipboard } from '@angular/cdk/clipboard';
+
+import { BudgetCalculateService } from '../../services/budget-calculate.service';
 import { ManipulateBudgetsService } from '../../services/manipulate-budgets.service';
+import { UrlValues } from '../../interfaces/UrlValues';
 
 @Component({
   selector: 'app-home-page',
@@ -14,19 +16,21 @@ export class HomePageComponent implements OnInit {
 
   myForm!: FormGroup
   private _change: boolean
+  showMessage: boolean = false
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private budgetCalculateService: BudgetCalculateService,
-    private manipulateBudgetService: ManipulateBudgetsService
+    private manipulateBudgetService: ManipulateBudgetsService,
+    private clipboard: Clipboard
   ) {
     this.initForm(this.router.getCurrentNavigation()!.extractedUrl.queryParams as UrlValues)
     this._change = false
 
     this.router.navigate(['/home'], {queryParams: this.router.getCurrentNavigation()!.initialUrl.queryParams} )
   }
-
+  
   initForm(values?: UrlValues) {
     this.myForm = this.fb.group({
       webPage: [this.budgetCalculateService.validateStringToBoolean(String(values?.webPage)) ?? false, Validators.required],
@@ -72,9 +76,18 @@ export class HomePageComponent implements OnInit {
   showHelp(value: string) { return value }
 
   goBack() {
-    this.router.ngOnDestroy()
+    this.resetValueToFalse(this.myForm, ['webPage', 'seoCampaign', 'adsCampaign'])
+
   }
 
+  copyToClipboard() {
+    const urlCopied: string = this.router.url
+    this.clipboard.copy('http://localhost:4200/' + urlCopied)
+    this.showMessage = true
+    setTimeout(() => {
+      this.showMessage = false
+    }, 2000);
+  }
 
   ngOnInit(): void {
     if (!this.optionsDisplay) this.manipulateBudgetService.resetValueTo1(this.showOptions, ['pages', 'languages'])
