@@ -79,7 +79,7 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/landing'])
     if (this.optionsDisplay) {
       this.resetValueToFalse(this.myForm, ['webPage', 'seoCampaign', 'adsCampaign'])
-      this.myForm.valueChanges.subscribe(observer => this.router.navigate(['/landing']))
+      this.myForm.valueChanges.subscribe(() => this.router.navigate(['/landing']))
     }
   }
 
